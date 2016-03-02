@@ -733,7 +733,7 @@ function admin_movies_appendFun(classId,href,title) {
 			handler : function() {
 				var d = $(this).closest('.window-body');	//上层弹窗
 				$('#moviesaddform').form('submit', {
-				url : 'AddMoviesAction!AddMovies.action',
+				url : 'AddMoviesAction!AddMoviesAuto.action',
 				success : function(result) {
 				try {
 					var r = $.parseJSON(result);

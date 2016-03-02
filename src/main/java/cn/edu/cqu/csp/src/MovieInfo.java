@@ -195,6 +195,51 @@ public class MovieInfo {
         }  
 		return true;
 	}
+	public boolean getMovieHtmlAuto(String doubanid)
+	{
+		CloseableHttpClient httpclient = HttpClients.createDefault();  
+        try {  
+            // 创建httpget.    
+            HttpGet httpget = new HttpGet("http://movie.douban.com/subject/"+doubanid+"/");    
+            // 执行get请求.    
+            CloseableHttpResponse response = httpclient.execute(httpget);
+            if(response.getStatusLine().equals("403"))
+            	return false;
+            try {  
+                // 获取响应实体    
+                HttpEntity entity = response.getEntity();  
+                //System.out.println("--------------------------------------");  
+                // 打印响应状态    
+                System.out.println(response.getStatusLine());  
+                if (entity != null) { 
+                	InputStream instreams = entity.getContent();
+                	movieHtml = convertStreamToString(instreams);
+                } 
+                else
+                	return false;
+                System.out.println("------------------------------------");  
+            } finally {  
+                response.close();  
+            }  
+        } catch (ClientProtocolException e) {  
+            e.printStackTrace();  
+            return false;
+        } catch (ParseException e) {  
+            e.printStackTrace();  
+            return false;
+        } catch (IOException e) {  
+            e.printStackTrace(); 
+            return false;
+        } finally {  
+            // 关闭连接,释放资源    
+            try {  
+                httpclient.close();  
+            } catch (IOException e) {  
+                e.printStackTrace();  
+            }  
+        }  
+		return true;
+	}
 	
 	public boolean downloadPoster()
 	{
@@ -373,7 +418,7 @@ public class MovieInfo {
 	{
 		System.out.println("getInfo");
 		//
-		/*movies.setDirector(matchInfo(DIRECTOR));
+		movies.setDirector(matchInfo(DIRECTOR));
 		String actor = matchInfo(ACTOR);
 		System.out.println(actor);
 		movies.setActor(actor);
@@ -390,11 +435,56 @@ public class MovieInfo {
 		
 		movies.setDuration(matchInfo(DURATION));
 		movies.setDoubanscore(matchInfo(DOUBANSCORE));
-		movies.setMovietag(matchInfo(TAG));*/
+		movies.setMovietag(matchInfo(TAG));
 		System.out.println(matchInfo(ENGLISHNAME));
 		movies.setOthername(matchInfo(OTHERNAME));
 		movies.setEnglishname(matchInfo(ENGLISHNAME));
 		moviesDAO.update(movies);
+		return true;
+	}
+	
+	public boolean getMovieInfoAuto(String name,String doubanid)
+	{
+		System.out.println(name+"++"+doubanid);
+		Movies movies=new Movies();
+		movies.setMoviename(name);
+		movies.setDoubanid(Integer.parseInt(doubanid));
+		System.out.println("getInfoAuto");
+		getMovieHtmlAuto(doubanid);
+		
+		movies.setDirector(matchInfo(DIRECTOR));
+		
+		String actor = matchInfo(ACTOR);
+		System.out.println(actor);
+		movies.setActor(actor);
+		System.out.println(movies.getActor());
+		movies.setDescription(matchInfo(DESCRIPTION));
+		movies.setCountry(matchInfo(COUNTRY));
+		try{
+			movies.setYear(Integer.parseInt(matchInfo(YEAR).substring(0, 4)));
+		}
+		catch(Exception ex)
+		{
+			return false;
+		}
+		
+		movies.setCount(0);
+		movies.setNewestscore(0);
+		movies.setHottestscore(0);
+		movies.setClassicscore(0);
+		movies.setDuration(matchInfo(DURATION));
+		String dbscore=matchInfo(DOUBANSCORE);
+		System.out.println("dbscore "+dbscore);
+		movies.setDoubanscore(dbscore);
+		if(dbscore.startsWith("8")||dbscore.startsWith("9"))
+			movies.setMovietag(matchInfo(TAG)+"豆瓣高分");
+		else {
+			movies.setMovietag(matchInfo(TAG));
+		}		
+		System.out.println(matchInfo(ENGLISHNAME));
+		movies.setOthername(matchInfo(OTHERNAME));
+		movies.setEnglishname(matchInfo(ENGLISHNAME));
+		moviesDAO.save(movies);
 		return true;
 	}
 	

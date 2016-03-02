@@ -152,10 +152,15 @@ $(function(){
 		$("#right_hand").attr("style","right:-112px;top:-12px");
 	});
 });
+function login(){
+	var key=event.keyCode;
+	if(key==13)
+		$("#login_form").submit();
+}
 </SCRIPT>
  
 </HEAD> 
-<BODY>
+<BODY onkeydown="login()">
 	<DIV class="top_div">
 	<div style="height:160px;"></div>
 	<span>自然卷私人影院后台管理系统</span>
@@ -178,8 +183,9 @@ $(function(){
 <DIV style="height: 50px; line-height: 50px; margin-top: 30px; border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
 <P style="margin: 0px 35px 20px 45px;">
            
-              <a class="a_login" style="background: rgb(0, 142, 173); padding: 10px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" 
+              <a onkeypress="login" class="a_login" style="background: rgb(0, 142, 173); padding: 10px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" 
 href="#" onclick="$('#login_form').submit();return false"> &nbsp; &nbsp;登 &nbsp; &nbsp;录 &nbsp; &nbsp;</a> 
+
         
                </P></DIV></DIV>
                 </form>

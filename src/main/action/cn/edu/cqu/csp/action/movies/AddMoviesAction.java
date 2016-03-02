@@ -1,12 +1,16 @@
 package cn.edu.cqu.csp.action.movies;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.cfca_c.yb.util.GetIDByName;
 
 import cn.edu.cqu.csp.dao.movies.Movies;
 import cn.edu.cqu.csp.dao.movies.MoviesDAO;
 import cn.edu.cqu.csp.dao.tags.Tags;
 import cn.edu.cqu.csp.dao.tags.TagsDAO;
+import cn.edu.cqu.csp.src.MovieInfo;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -172,6 +176,7 @@ public class AddMoviesAction extends ActionSupport{
 	
 	public String AddMovies()
 	{
+		System.out.println("noauto");
 		MoviesDAO moviesDAO = new MoviesDAO();
 		Movies movies = new Movies();
 		movies.setMoviename(movies_moviename);
@@ -223,6 +228,26 @@ public class AddMoviesAction extends ActionSupport{
 			tags.setSelected(false);
 		}*/
 		moviesDAO.save(movies);
+		dataMap.put("success", 1);
+		return "success";
+	}
+	
+	public String AddMoviesAuto()
+	{
+		System.out.println("auto");
+		//MoviesDAO moviesDAO = new MoviesDAO();
+		//Movies movies = new Movies();
+		try {
+			System.out.println("name:"+movies_moviename);
+			String doubanid=GetIDByName.getID(movies_moviename);
+			MovieInfo info=new MovieInfo();
+			info.getMovieInfoAuto(movies_moviename, doubanid);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//moviesDAO.save(movies);
 		dataMap.put("success", 1);
 		return "success";
 	}
