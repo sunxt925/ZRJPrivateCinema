@@ -46,6 +46,7 @@ public class SearchMoviesAction {
 		
 		MovieUI movieUI = new MovieUI();
 		List movies = new ArrayList();
+		/*
 		String x="";
 		try {
 			x = new String(keyword.getBytes("ISO-8859-1"),"utf-8");
@@ -54,7 +55,8 @@ public class SearchMoviesAction {
 			e.printStackTrace();
 		}
 		System.out.println("keyword:"+x);
-		movies = movieUI.getSearchMovies("1","9",x);
+		*/
+		movies = movieUI.getSearchMovies("1","9",keyword);
 		dataMap.clear();
 		
 		dataMap.put("flag", "movies");

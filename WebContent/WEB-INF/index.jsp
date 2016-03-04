@@ -81,6 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         			<li><a href="javascript:viod(0);" cmshref="cms/main/lives/livesManage.html" type="nav_head" rel="">live管理</a></li>
         			<li><a href="javascript:viod(0);" cmshref="cms/main/tags/tagsManage.html" type="nav_head" rel="">标签管理</a></li>
         			<li><a href="javascript:viod(0);" cmshref="cms/main/messages/messagesManage.html" type="nav_head" rel="">提示信息管理</a></li>
+        			<li><a href="javascript:viod(0);" cmshref="SenderAction!show.action" type="nav_head" rel="">上报频率管理</a></li>
             	</ul>
             </div><!--//左侧菜单导航-->
             <div title="站点管理" data-options="iconCls:'icon-mini-add'" style="padding:10px;">

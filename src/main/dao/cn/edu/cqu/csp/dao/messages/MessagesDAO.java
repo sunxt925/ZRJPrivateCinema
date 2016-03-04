@@ -52,6 +52,7 @@ public class MessagesDAO extends BaseHibernateDAO  {
         log.debug("updating User instance");
         
         try {
+        	transientInstance.setAuthor("zrj");
         	session = getSession();
         	tx = session.beginTransaction();
             session.update(transientInstance);
@@ -204,4 +205,37 @@ public class MessagesDAO extends BaseHibernateDAO  {
             throw re;
         }
     }
+
+	public void updateSender(int sendValue) {
+		 try {
+	        	session = getSession();
+	        	tx = session.beginTransaction();
+	        	String sql = "UPDATE CONFS SET ipaddress='"+sendValue+"' where id=2";               
+	            session.createSQLQuery(sql).executeUpdate();  
+	            tx.commit();
+	            session.close();
+	            log.debug("delete successful");
+	        } catch (RuntimeException re) {
+	            log.error("delete failed", re);
+	            throw re;
+	        }
+		
+	}
+
+	public String showSender() {
+		try {
+        	session = getSession();
+        	tx = session.beginTransaction();
+        	String sql = "SELECT ipaddress from CONFS where id=2";               
+            String rs=(String)session.createSQLQuery(sql).list().get(0);  
+            tx.commit();
+            session.close();
+            log.debug("delete successful");
+            return rs;
+        } catch (RuntimeException re) {
+            log.error("delete failed", re);
+            throw re;
+        }
+		
+	}
 }

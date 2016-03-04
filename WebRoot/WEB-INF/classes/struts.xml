@@ -93,6 +93,11 @@
                 <param name="root">dataMap</param>
             </result>  
         </action>  
+        <action name="SenderAction"  
+            class="cn.edu.cqu.csp.action.sender.SenderAction">  
+            <result name="success">/WEB-INF/index.jsp</result>
+            <result name="show">/cms/main/sender/sendManage.jsp</result>
+        </action> 
         
         <action name="AddMessagesAction" class="cn.edu.cqu.csp.action.messages.AddMessagesAction">
 			<result type="json">  

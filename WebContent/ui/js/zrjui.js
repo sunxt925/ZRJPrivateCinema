@@ -321,7 +321,7 @@ function previousPage()
 
 function newPage(clickPage)
 {
-	alert(clickPage);
+	//alert(clickPage);
 	$(".secondKey").text("new");
 	$("#pagename").text(clickPage);
 	$.ajax({
@@ -456,6 +456,21 @@ function click_a(ad,aflag,address)
 	
 }
 
+/** 
+* 获取本地IP地址 
+*/ 
+function getLocalIPAddress() 
+{ 
+	GetIP();
+    function my_callback2(json) {
+       alert(json.IP);
+   }
+   function GetIP(){
+         EasyjQuery_Get_IP("my_callback2","full"); // full version
+     } 
+
+}
+
 function setMovieInfo(moviename)
 {
 	
@@ -514,6 +529,7 @@ function setMovieInfo(moviename)
 	}
 	
 	 $.fn.SmohanPopLayer = function(options) {
+		 //alert(options.Content);
         var Config = {Shade: true,Event: "click",Content: "Content",Title: "Smohan.net"};
         var options = $.extend(Config, options);
 		var totalstring;
@@ -537,6 +553,7 @@ function setMovieInfo(moviename)
             });
         } else {
             $(this).live(options.Event, function(e) {
+            	//alert(options);
                 $('#layer_' + options.Content).animate({opacity: 'show'}, "fast", function() {
 					$('.Smohan_Layer_Shade').remove();
 					var ht = '<div class="Smohan_Layer_Shade"></div>';
@@ -546,6 +563,7 @@ function setMovieInfo(moviename)
             });
         }
         $('.Smohan_Layer_box .close').click(function(e) {
+        	alert("这是一个记录点B");
             $('.Smohan_Layer_box').animate({opacity: 'hide',marginTop: '-300px'}, "fast", function() {
 				$('.Smohan_Layer_Shade').remove();
                // $('.Smohan_Layer_box').remove();
