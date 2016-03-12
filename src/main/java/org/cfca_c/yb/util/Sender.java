@@ -10,6 +10,8 @@ import javax.xml.rpc.ServiceException;
 import org.cfca_c.yb.WebService.WebServiceLocator;
 import org.cfca_c.yb.WebService.WebServiceSoap;
 
+import cn.edu.cqu.csp.dao.messages.MessagesDAO;
+
 public class Sender {
 	//上报xml拼接
 	public static String makeXML(String nowTime, String moviename,
@@ -18,6 +20,8 @@ public class Sender {
 		String password="";
 		String onlyCode="";
 		String movieSerial=getTimeText().split(" ")[0].replace("-", "").substring(2);//再加上当日播放号
+		MessagesDAO mdao=new MessagesDAO();
+		movieSerial=mdao.getPlaySerial(movieSerial);
 		String xml="<?xml version='1.0' encoding='utf-8' ?><MoviePlayDetail><UserInfo><UserName name='用户代码'>";
 		xml+=userCode;
 		xml+="</UserName><UserPassword name='密码'>";
@@ -92,7 +96,7 @@ public class Sender {
 	public static long getTimeSpan(String thisTime, String lastTime) throws ParseException {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		long span=df.parse(thisTime).getTime()-df.parse(lastTime).getTime();
-		long minSpan=span/6000; //相隔多少分钟
+		long minSpan=span/60000; //相隔多少分钟
 		return minSpan;
 	}
 

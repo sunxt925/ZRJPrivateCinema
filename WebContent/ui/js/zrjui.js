@@ -563,7 +563,7 @@ function setMovieInfo(moviename)
             });
         }
         $('.Smohan_Layer_box .close').click(function(e) {
-        	alert("这是一个记录点B");
+        	//alert("这是一个记录点B");
             $('.Smohan_Layer_box').animate({opacity: 'hide',marginTop: '-300px'}, "fast", function() {
 				$('.Smohan_Layer_Shade').remove();
                // $('.Smohan_Layer_box').remove();

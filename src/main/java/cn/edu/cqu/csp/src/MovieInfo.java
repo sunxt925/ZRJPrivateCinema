@@ -37,6 +37,8 @@ public class MovieInfo {
 	public static final String TAG = "(?<=<span property=\"v:genre\">)[\u4e00-\u9fa5\\s/]+";
 	public static final String PHOTO = "(?<= href=\")[\\S]+(?=\" title=\"点击看更多海报\">)";
 	public static final String PHOTO2 = "(?<=<img src=\")[\\S]+(?=\" />)";
+	public static final String OTHERNAME = "(?<=又名:</span> )[\u4e00-\u9fa5\\s\\w/()]+";
+	public static final String ENGLISHNAME = "(?<=\"v:itemreviewed\">)[\u4e00-\u9fa5\\s\\w]++";
 	
 	private String Str = new String("");
 	private String movieHtml;
@@ -371,7 +373,7 @@ public class MovieInfo {
 	{
 		System.out.println("getInfo");
 		//
-		movies.setDirector(matchInfo(DIRECTOR));
+		/*movies.setDirector(matchInfo(DIRECTOR));
 		String actor = matchInfo(ACTOR);
 		System.out.println(actor);
 		movies.setActor(actor);
@@ -388,7 +390,10 @@ public class MovieInfo {
 		
 		movies.setDuration(matchInfo(DURATION));
 		movies.setDoubanscore(matchInfo(DOUBANSCORE));
-		movies.setMovietag(matchInfo(TAG));
+		movies.setMovietag(matchInfo(TAG));*/
+		System.out.println(matchInfo(ENGLISHNAME));
+		movies.setOthername(matchInfo(OTHERNAME));
+		movies.setEnglishname(matchInfo(ENGLISHNAME));
 		moviesDAO.update(movies);
 		return true;
 	}

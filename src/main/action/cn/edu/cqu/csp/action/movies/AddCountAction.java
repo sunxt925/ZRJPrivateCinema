@@ -85,7 +85,7 @@ public class AddCountAction {
 					String nowTime=org.cfca_c.yb.util.Sender.getTimeText();
 					long timeSpan=org.cfca_c.yb.util.Sender.getTimeSpan(nowTime,(String)request.getSession().getAttribute(clientIP));
 					System.out.println("timeSpan  "+timeSpan);
-					if(timeSpan<0.1){
+					if(timeSpan<0){
 						System.out.println("小于20分钟");
 						request.getSession().setAttribute(clientIP, nowTime);
 					}else if(timeSpan<Long.parseLong(movieTime)){  //还应去除分钟

@@ -44,6 +44,8 @@ public abstract class AbstractMovies  implements java.io.Serializable {
      private String director;
      private String actor;
      private Integer count;
+     private String othername;//用分隔符分开
+     private String englishname;
 
 
      
@@ -63,7 +65,7 @@ public abstract class AbstractMovies  implements java.io.Serializable {
 
     
     /** full constructor */
-    public AbstractMovies(String moviename, String movietag, String filepath, String photopath, String description, String duration, Integer doubanid, String doubanscore, Integer newestscore, Integer hottestscore, Integer classicscore, String country, Integer year, String director, String actor, Integer count) {
+    public AbstractMovies(String moviename, String movietag, String filepath, String photopath, String description, String duration, Integer doubanid, String doubanscore, Integer newestscore, Integer hottestscore, Integer classicscore, String country, Integer year, String director, String actor, Integer count,String othername,String englishname) {
         this.moviename = moviename;
         this.movietag = movietag;
         this.filepath = filepath;
@@ -80,6 +82,8 @@ public abstract class AbstractMovies  implements java.io.Serializable {
         this.director = director;
         this.actor = actor;
         this.count = count;
+        this.othername=othername;
+        this.englishname=englishname;
     }
 
    
@@ -255,6 +259,26 @@ public abstract class AbstractMovies  implements java.io.Serializable {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+    @Column(name="othername")
+	public String getOthername() {
+		return othername;
+	}
+
+
+	public void setOthername(String othername) {
+		this.othername = othername;
+	}
+
+	@Column(name="englishname")
+	public String getEnglishname() {
+		return englishname;
+	}
+
+
+	public void setEnglishname(String englishname) {
+		this.englishname = englishname;
+	}
    
 
 

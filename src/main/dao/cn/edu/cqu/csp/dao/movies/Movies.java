@@ -22,8 +22,8 @@ public class Movies extends AbstractMovies implements java.io.Serializable {
 
     
     /** full constructor */
-    public Movies(String moviename, String movietag, String filepath, String photopath, String description, String duration, Integer doubanid, String doubanscore, Integer newestscore, Integer hottestscore, Integer classicscore, String country, Integer year, String director, String actor, Integer count) {
-        super(moviename, movietag, filepath, photopath, description, duration, doubanid, doubanscore, newestscore, hottestscore, classicscore, country, year, director, actor, count);        
+    public Movies(String moviename, String movietag, String filepath, String photopath, String description, String duration, Integer doubanid, String doubanscore, Integer newestscore, Integer hottestscore, Integer classicscore, String country, Integer year, String director, String actor, Integer count,String othername,String englishname) {
+        super(moviename, movietag, filepath, photopath, description, duration, doubanid, doubanscore, newestscore, hottestscore, classicscore, country, year, director, actor, count,othername,englishname);        
     }
    
 }

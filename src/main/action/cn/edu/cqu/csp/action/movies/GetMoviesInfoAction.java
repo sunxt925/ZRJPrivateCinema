@@ -58,11 +58,11 @@ public class GetMoviesInfoAction extends ActionSupport{
 			}
 				
 			//mi.getMovies(st.nextToken());
-			if(!mi.downloadPoster())
+		/*	if(!mi.downloadPoster())
 			{
 				error="error downloadposter";
 				continue;
-			}
+			}*/
 				
 			
 			if(!mi.getMovieInfo())

@@ -4,13 +4,16 @@ package cn.edu.cqu.csp.dao.messages;
 import cn.edu.cqu.csp.dao.BaseHibernateDAO;
 import cn.edu.cqu.csp.dao.tags.Tags;
 
+import java.text.DecimalFormat;
 import java.util.List;
+
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import static org.hibernate.criterion.Example.create;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -235,7 +238,33 @@ public class MessagesDAO extends BaseHibernateDAO  {
         } catch (RuntimeException re) {
             log.error("delete failed", re);
             throw re;
-        }
-		
+        }	
+	}
+	//返回当日播放序号（6+4），让序号加一
+	public String getPlaySerial(String today) {
+		String result="";
+		try {
+        	session = getSession();
+        	tx = session.beginTransaction();
+        	String sql = "SELECT ipaddress from CONFS where id=3";               
+            String rs=(String)session.createSQLQuery(sql).list().get(0); 
+            if(rs.startsWith(today)){  //还是当日影片 后四位序号加一
+            	String serial=rs.substring(6);
+            	DecimalFormat df = new DecimalFormat("0000"); 
+    			serial = df.format(Integer.parseInt(serial)+1);
+    			result=today+serial;
+    			String sql2 = "UPDATE CONFS SET ipaddress='"+result+"' where id=3";               
+	            session.createSQLQuery(sql2).executeUpdate();
+            }else{// 没有当日影片数据，这个为第一次播放，后四位置为0001
+            	String sql2 = "UPDATE CONFS SET ipaddress='"+today+"0001' where id=3";               
+	            session.createSQLQuery(sql2).executeUpdate();  
+	            result=today+"0001";
+            }
+            tx.commit();
+            session.close();
+            return result;
+        } catch (RuntimeException re) {
+            throw re;
+        }	
 	}
 }

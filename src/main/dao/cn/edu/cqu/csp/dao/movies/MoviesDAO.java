@@ -155,10 +155,10 @@ public class MoviesDAO extends BaseHibernateDAO  {
 	public List<Movies> findByKeyword(String keyword) {
 		session = getSession();
 		tx=session.beginTransaction();  
-		String hql="from Movies m where m.moviename like ? or m.country like ? or m.director like ? or m.actor like ? or m.movietag like ? order by m.id desc";
+		String hql="from Movies m where m.moviename like ? or m.country like ? or m.director like ? or m.actor like ? or m.movietag like ? or m.othername like ? or m.englishname like ? order by m.id desc";
 		queryObject = session.createQuery(hql);
 		
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < 7; i++)
 		{
 			queryObject.setString(i,"%"+keyword+"%");
 		}
