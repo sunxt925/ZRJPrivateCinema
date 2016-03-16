@@ -1,0 +1,78 @@
+<!DOCTYPE html>  
+
+<div class="pagecontent">
+    <table id="datagrid_livesManage">
+    </table>    
+    <script>
+	
+        $(function(){
+            var classId = 'livesManage';
+            var hrefadd = 'cms/main/lives/livesadd.html';
+            var hrefedit = 'cms/main/lives/livesedit.html';
+            var height = $('.indexcenter').height();
+            $('#datagrid_'+classId).datagrid({
+    			url:'LoadLivesAction!LoadLives.action',
+    			fitColumns:true,
+    			pagination:false,
+    			rownumbers:true,
+    			autoRowHeight:false,
+    			showFooter:true,
+    			height:height-50,
+    			animate:true,
+    			columns:[[	
+    				{field:'checkbox',checkbox:true},
+        			{field:'id',title:"liveID",width:100},
+        			{field:'livename',title:"live名",width:100},
+        			{field:'liveaddress',title:"live地址",width:100},
+        			{field:'imageaddress',title:"图片地址",width:100}
+    			]],
+    			toolbar:[
+				
+				{
+    				id:'btnadd'+classId,
+    				text:'新建live',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '新建标签';
+    					admin_lives_appendFun(classId,hrefadd,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnedit'+classId,
+    				text:'编辑live',
+    				iconCls:'icon-edit',
+    				handler:function(){
+    					var title = '编辑live';
+    					admin_lives_editFun(classId,hrefedit);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btndelete'+classId,
+    				text:'删除live',
+    				iconCls:'icon-remove',
+    				handler:function(){
+    					var title = '删除live';
+    					admin_lives_cancelFun(classId);
+    					}
+    				},
+				'-',
+				{
+    				text: '搜索：<input type="text" id="livessearch"/>',
+    				},
+				{
+    				id:'btnsearch'+classId,
+    				iconCls:'icon-search',
+    				handler:function(){
+    					var keyword = $('#livessearch').attr('value');
+    					admin_lives_searchFun(classId,keyword);
+    					}	
+    				},
+				'-'
+    			],
+			});		
+		});		
+    </script>
+
+</div>

@@ -1,0 +1,126 @@
+<div class="pagecontent" meta charset="UTF-8">
+<meta charset="UTF-8">
+	<table id="user" class="easyui-datagrid" style="width:auto;"
+	url="LoadUserAction!LoadUser.action"
+	toolbar="#toolbar" pagination="false" autoRowHeight="false" showFooter="true" animate="true"
+	rownumbers="true" fitColumns="true"  >
+	<thead>
+		<tr>
+			<th field="id" width="50px">用户ID</th>
+			<th field="username" width="50px">用户名</th>
+			<th field="password" width="50px">密码</th>		
+		</tr>
+	</thead>
+	</table>			
+
+<div id="toolbar">
+	<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="on_create_newuser()">添加用户</a>
+	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="on_edit_user()">编辑用户</a>
+	<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="on_delete_user()">删除用户</a>
+</div>
+
+</div><!--pagecontent-->
+
+<div title="添加用户" id="addUserDiv"
+ class="easyui-dialog" style="width:280px;height:200px;padding:0px 20px"  
+        closed="true" buttons="#tbluser-buttons">
+			<form id="tbluseraddform" action="AddUserAction.action" method="post">
+            <input class="easyui-validatebox" type="hidden" name="tbluser_id" id="tbluser_id" value='' >
+			<table>
+		 	<tr height="28" >
+				<td>用户名：</td>
+				<td><input class="easyui-validatebox" type="text" id="tbluser_username" name="tbluser_username"  style="height:20px"></td>
+			</tr>
+		 	<tr height="28" >
+				<td>密码：</td>
+				<td><input class="easyui-validatebox" type="text" id="tbluser_password" name="tbluser_password"  style="height:20px"></td>
+			</tr>
+</table>
+</form>
+</div>
+
+<div title="编辑用户" id="editUserDiv"
+ class="easyui-dialog" style="width:280px;height:200px;padding:0px 20px"  
+        closed="true" buttons="#tbluser-buttons">
+			<form id="tblusereditform" action="AddUserAction.action" method="post">
+            <input class="easyui-validatebox" type="hidden" name="tbluser_id" id="tbluser_id_edit"  type="text" >
+			<table>
+		 	<tr height="28" >
+				<td>用户名：</td>
+				<td><input  class="easyui-validatebox"  type="text" id="tbluser_username" name="tbluser_username_edit"  style="height:20px"></td>
+			</tr>
+		 	<tr height="28" >
+				<td>密码：</td>
+				<td><input class="easyui-validatebox"  type="text" id="tbluser_password_edit" name="tbluser_password"  style="height:20px"></td>
+			</tr>
+</table>
+</form>
+</div>
+
+<div id="tbluser-buttons">  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save_tbluser()">保存</a>  
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#addUserDiv').dialog('close')">取消</a>  
+</div>  
+
+<script lanugage="JavaScript">
+function on_create_newuser()
+{
+	$('#tbluseraddform').form('clear');
+	$('#tbluseraddform').attr('action','AddUserAction!AddUser.action');
+    $('#addUserDiv').dialog({title:'添加用户'}).dialog('open');
+}
+
+function on_edit_user()
+{
+		var row = $('#user').datagrid('getSelected');
+        if ( row) {
+            edit_tbluser();
+        }
+        else {
+            $.messager.alert( '请选择数据',   '请选择要编辑的数据' ,'icon-info'  );   
+        }
+}
+
+function on_delete_user()
+{
+	$('#tbluseraddform').form('clear');
+	$('#tbluseraddform').attr('action','AddUserAction!AddUser.action');
+    $('#addUserDiv').dialog({title:'删除用户'}).dialog('open');
+}
+
+function save_tbluser(){   
+    $('#tbluseraddform').form('submit',{   
+        url: $('#tbluseraddform').attr('action'),   
+        onSubmit: function(){   
+            return $(this).form('validate');   
+        },   
+        success: function(result){   
+            //var result = eval('('+result+')');   
+            if (result.errorMsg){   
+            	 $.messager.show({   
+                    title: '出错',   
+                    msg: result.msg   
+                })
+            } else {
+                $('#addUserDiv').dialog('close');      // close the dialog   
+                $('#user').datagrid('reload');    // reload the user data   
+                ;   
+            }   
+        }   
+    });   
+}
+
+function edit_tbluser()
+{
+	var ids = [];
+	var rows = $('#user').datagrid('getSelected');
+	for(var i=0; i<rows.length; i++){
+		ids.push(rows[i]);
+	}
+	ids.join("\n");
+	alert(ids);
+	$('#tbluser_username_edit').value=ids[1];
+        $('#editUserDiv').dialog({title:'编辑摄像头信息'}).dialog('open');
+        
+}
+</script>

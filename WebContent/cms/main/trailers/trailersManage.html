@@ -1,0 +1,122 @@
+<!DOCTYPE html>  
+
+<div class="pagecontent">
+    <table id="datagrid_trailersManage">
+    </table>    
+    <script>
+	
+        $(function(){
+            var classId = 'trailersManage';
+            var hrefadd = 'cms/main/trailers/trailersadd.html';
+            var hrefaddtags = 'cms/main/trailers/trailersaddtags.html';
+            var hrefimporttrailers = 'cms/main/trailers/importtrailers.html';
+            var hrefedit = 'cms/main/trailers/trailersedit.html';
+            var height = $('.indexcenter').height();
+            $('#datagrid_'+classId).datagrid({
+    			url:'LoadTrailersAction!LoadTrailers.action',
+    			fitColumns:true,
+    			pagination:false,
+    			rownumbers:true,
+    			autoRowHeight:false,
+    			showFooter:true,
+    			height:height-50,
+    			animate:true,
+    			columns:[[	
+    				{field:'checkbox',checkbox:true},
+        			{field:'id',title:"预告片ID",width:100},
+        			{field:'movietag',title:"标签",width:100},
+        			{field:'moviename',title:"预告片名称",width:100},
+        			{field:'filepath',title:"预告片路径",width:100},
+        			{field:'photopath',title:"海报路径",width:100},
+        			{field:'description',title:"预告片描述",width:100},
+        			{field:'duration',title:"片长",width:100},
+        			{field:'doubanid',title:"豆瓣ID",width:100},
+        			{field:'country',title:"制片国家",width:100},
+        			{field:'year',title:"上映日期",width:100},
+        			{field:'director',title:"导演",width:100},
+        			{field:'actor',title:"主演",width:100},
+        			{field:'count',title:"播放次数",width:100},
+        			{field:'doubanscore',title:"豆瓣评分",width:100}
+    			]],
+    			toolbar:[
+				
+				{
+    				id:'btnadd'+classId,
+    				text:'新建预告片',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '新建预告片';
+    					admin_trailers_appendFun(classId,hrefadd,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnedit'+classId,
+    				text:'编辑预告片',
+    				iconCls:'icon-edit',
+    				handler:function(){
+    					var title = '编辑预告片';
+    					admin_trailers_editFun(classId,hrefedit);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btndelete'+classId,
+    				text:'删除预告片',
+    				iconCls:'icon-remove',
+    				handler:function(){
+    					var title = '删除预告片';
+    					admin_trailers_cancelFun(classId);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnaddtags'+classId,
+    				text:'批量添加标签',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '批量添加标签';
+    					admin_trailers_addTagsFun(classId,hrefaddtags,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnimporttrailers'+classId,
+    				text:'批量导入预告片',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '批量导入预告片';
+    					admin_trailers_importFun(classId,hrefimporttrailers,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btngetinfo'+classId,
+    				text:'获取预告片信息',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '获取预告片信息';
+    					admin_trailers_getinfoFun(classId);
+    					}
+    				},
+				'-',
+				{
+    				text: '搜索：<input type="text" id="trailerssearch"/>',
+    				},
+				{
+    				id:'btnsearch'+classId,
+    				iconCls:'icon-search',
+    				handler:function(){
+    					var keyword = $('#trailerssearch').attr('value');
+    					admin_trailers_searchFun(classId,keyword);
+    					}	
+    				},
+				'-'
+    			],
+			});		
+		});		
+    </script>
+
+</div>
+
+

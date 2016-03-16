@@ -1,0 +1,36 @@
+<div class="division">
+<form class="tableform" id="messageseditform" action="" method="post">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="shopping_setting">
+            <tbody>
+            <tr>
+                    <th>
+                     	  ID：
+                    </th>
+                    <td>
+                        <input  type="text" name="messages_id" id="messages_id" style="width:100%;" data-options="required:true" readonly="true" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                     	  信息内容：
+                    </th>
+                    <td>
+                    	<textarea id="messages_content" name="messages_content" maxlength="255/" cols="35" class="easyui_form_textarea" style="width:100%" rows="4" data-options="required:true">
+                        </textarea>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                     	  是否前台显示：
+                    </th>
+                    <td>
+                    	<input type="radio" name="messages_selected" value="1" ><span>是</span><br/>
+						<input type="radio" name="messages_selected" value="0" checked="true"><span>否</span><br/>
+                       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</form>
+</div>

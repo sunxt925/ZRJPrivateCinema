@@ -1,0 +1,124 @@
+<table id="datagrid_picstab0" toolbar="#tbs" class="datagrid">
+    <thead>
+        <tr>
+            <th data-options="field:'id',align:'center'" rowspan="2" width="50">ID</th>
+            <th data-options="field:'title'" width="250">描述</th>
+            <th data-options="field:'last_modify'" width="79">修改时间</th>
+            <th data-options="field:'is_post'" width="55">是否发布</th>
+            <th data-options="field:'name'" width="100">所属分类</th>
+            <th data-options="field:'view'" width="30">预览</th>
+            <th data-options="field:'send_date'" width="100">创建时间</th>
+        </tr>
+    </thead>
+</table>
+<div id="tbs" style="padding:5px;height:auto">
+		<div style="margin-bottom:5px">
+			<a href="#" id="btnadd_picstab0" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加图片</a>
+			<a href="#" id="btndel_picstab0" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除图片</a>
+		</div>
+		<div>
+			信息搜索: <input style="line-height:16px; height:16px;border:1px solid #ccc;width:120px">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+		</div>
+</div>
+<script>
+$(function(){
+	var height = $('.indexcenter').height();
+	var classId = 'picstab0';
+	var hrefadd = 'pictures/add.html';
+	var hrefcancel = 'pictures/del.html';
+	var urljson = 'pictures/listJsonId.html?id=0';
+	//openDatagrid(classId,urljson,hrefadd,hrefedit,hrefcancel);
+	$('#datagrid_'+classId).datagrid({
+		url:urljson,
+		idField:'id',
+		pagination:true,
+		rownumbers:true,
+		fitColumns:true,
+		checkbox:true,
+		height:height-65,
+		//singleSelect:true,
+		columns:[[  
+		{
+			field:'id',
+			align:'center',
+			title:'ID',
+			width:50
+		},{
+			field:'title',
+			title:'描述',
+			width:250
+		},{
+			field:'last_modify',
+			title:'修改时间',
+			width:79,
+		},{
+			field:'is_post',
+			title:'是否发布',
+			width:55
+		},{
+			field:'name',
+			title:'所属分类',
+			width:100
+		},{
+			field:'send_date',
+			title:'创建时间',
+			width:100,
+		},{
+			field:'action',
+			title:'动作',
+			width:50,
+			formatter : function(value, row, index) {
+				//alert(row.id);
+				return '<img src="../../themes/icons/search.png" width="16" height="16" onclick="admin_pics_viewFun(\''+row.id+'\')" />&nbsp;<img src="../../themes/icons/pencil.png" width="16" height="16" onclick="admin_pics_editFun(\''+row.id+'\')" />&nbsp;<img src="../../themes/icons/cancel.png" width="16" height="16" onclick="admin_pics_cancelFun(\''+row.id+'\')" />&nbsp;';
+			}
+		}
+		]],	
+		frozenColumns:[[
+				{
+					field:'ck',
+					checkbox:true
+				}
+			]]
+	});
+	var p = $('#datagrid_'+classId).datagrid('getPager');
+	$(p).pagination({
+		pageSize: 20,//每页显示的记录条数，默认为10
+		pageList: [10,20,30,40,50,100],//可以设置每页记录条数的列表
+		beforePageText: '第',//页数文本框前显示的汉字
+		afterPageText: '页    共 {pages} 页',
+		displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'
+	})
+	$('#btnadd_picstab0').click(function() {
+		var title = '添加图片';
+		openDialog(classId,hrefadd,title,400);
+	});
+	$('#btndel_picstab0').click(function() {
+		var title = '删除图片';
+		var ids = [];
+		var rows = $('#datagrid_'+classId).datagrid('getSelections');
+		for(var i=0;i<rows.length;i++){
+			ids.push(rows[i].id);
+		}
+		if(ids==''){
+			$.messager.alert('信息提示', '请选择要操作的项', 'error');
+			return false;
+		}
+		var href = hrefcancel;
+		var title = '删除信息';
+		$.messager.confirm(title,href, function(){
+			$.ajax({
+				url:href,
+				type:'post',
+				data:{
+					id:ids
+				},
+				dataType:'json',
+				success:function(data){
+					formAjax(data,classId);
+				}
+			});
+		});//$
+	});
+})
+</script>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>  
+
+<div class="pagecontent">
+    <table id="datagrid_moviesManage">
+    </table>    
+    <script>
+	
+        $(function(){
+            var classId = 'moviesManage';
+            var hrefadd = 'cms/main/movies/moviesadd.html';
+            var hrefaddtags = 'cms/main/movies/moviesaddtags.html';
+            var hrefimportmovies = 'cms/main/movies/importmovies.html';
+            var hrefedit = 'cms/main/movies/moviesedit.html';
+            var height = $('.indexcenter').height();
+            $('#datagrid_'+classId).datagrid({
+    			url:'LoadMoviesAction!LoadMovies.action',
+    			fitColumns:true,
+    			pagination:false,
+    			rownumbers:true,
+    			autoRowHeight:false,
+    			showFooter:true,
+    			height:height-50,
+    			animate:true,
+    			columns:[[	
+    				{field:'checkbox',checkbox:true},
+        			{field:'id',title:"电影ID",width:100},
+        			{field:'movietag',title:"标签",width:100},
+        			{field:'moviename',title:"电影名称",width:100},
+        			{field:'filepath',title:"电影路径",width:100},
+        			{field:'photopath',title:"海报路径",width:100},
+        			{field:'description',title:"电影描述",width:100},
+        			{field:'duration',title:"片长",width:100},
+        			{field:'doubanid',title:"豆瓣ID",width:100},
+        			{field:'country',title:"制片国家",width:100},
+        			{field:'year',title:"上映日期",width:100},
+        			{field:'director',title:"导演",width:100},
+        			{field:'actor',title:"主演",width:100},
+        			{field:'count',title:"播放次数",width:100},
+        			{field:'doubanscore',title:"豆瓣评分",width:100},
+        			{field:'newestscore',title:"Newest Score",width:100},
+        			{field:'hottestscore',title:"Hottest Score",width:100},
+        			{field:'classicscore',title:"Classic Score",width:100}
+    			]],
+    			toolbar:[
+				
+				{
+    				id:'btnadd'+classId,
+    				text:'新建电影',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '新建电影';
+    					admin_movies_appendFun(classId,hrefadd,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnedit'+classId,
+    				text:'编辑电影',
+    				iconCls:'icon-edit',
+    				handler:function(){
+    					var title = '编辑电影';
+    					admin_movies_editFun(classId,hrefedit);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btndelete'+classId,
+    				text:'删除电影',
+    				iconCls:'icon-remove',
+    				handler:function(){
+    					var title = '删除电影';
+    					admin_movies_cancelFun(classId);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnaddtags'+classId,
+    				text:'批量添加标签',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '批量添加标签';
+    					admin_movies_addTagsFun(classId,hrefaddtags,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnimportmovies'+classId,
+    				text:'批量导入电影',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '批量导入电影';
+    					admin_movies_importFun(classId,hrefimportmovies,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btngetinfo'+classId,
+    				text:'获取电影信息',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '获取电影信息';
+    					admin_movies_getinfoFun(classId);
+    					}
+    				},
+					'-',
+    				{
+    				id:'btngetinfo'+classId,
+    				text:'清空播放次数',
+    				iconCls:'icon-remove',
+    				handler:function(){
+    					var title = '清空播放次数';
+    					admin_movies_removeCountFun(classId);
+    					}
+    				},
+				'-',
+				{
+    				text: '搜索：<input type="text" id="moviessearch"/>',
+    				},
+				{
+    				id:'btnsearch'+classId,
+    				iconCls:'icon-search',
+    				handler:function(){
+    					var keyword = $('#moviessearch').attr('value');
+    					admin_movies_searchFun(classId,keyword);
+    					}	
+    				},
+				'-'
+    			],
+			});		
+		});		
+    </script>
+
+</div>
+
+

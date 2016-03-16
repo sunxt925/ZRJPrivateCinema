@@ -1,0 +1,62 @@
+<script type="text/javascript">
+//页面依赖性强，不建议移动
+$(pageInit);
+function pageInit()
+{
+	$('#elm1').xheditor({upLinkUrl:"xheditor-1.1.14/tools/upload.php",upLinkExt:"zip,rar,txt",upImgUrl:"xheditor-1.1.14/tools/upload.php",upImgExt:"jpg,jpeg,gif,png",upFlashUrl:"xheditor-1.1.14/tools/upload.php",upFlashExt:"swf",upMediaUrl:"xheditor-1.1.14/tools/upload.php",upMediaExt:"wmv,avi,wma,mp3,mid"});
+}
+</script>
+<form class="tableform" action="index.php?ctl=content/articles&amp;act=addArticle&amp;p[0]="
+method="post">
+    <input type="hidden" value="" name="node_id">
+    <input type="hidden" id="goodsid" value="" name="goodsid">
+    <div class="division">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="shopping_setting">
+            <tbody>
+                <tr>
+                    <th>
+                        链接名：
+                    </th>
+                    <td>
+                        <input type="text" name="linkname" style="width:240px" data-options="required:true" />（必填）
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        链接网址：
+                    </th>
+                    <td>
+                        <input type="text" name="linkurl" class="easyui-validatebox easyui_form_input" style="width:240px;" data-options="required:true">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        缩略图：
+                    </th>
+                    <td>
+                        <input type="file" name="linkpic" class="easyui-validatebox easyui_form_input" style="width:240px;" data-options="required:true">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        发布时间：
+                    </th>
+                    <td>
+                        <input id="fb_date" type="text" class="easyui-datebox" required="required">
+                    </td>
+                </tr>
+                 <tr>
+                    <th>
+                        链接分类：
+                    </th>
+                    <td>
+                        <select name="linktype">
+                          <option>默认分类</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</form>

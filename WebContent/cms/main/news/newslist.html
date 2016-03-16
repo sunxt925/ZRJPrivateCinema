@@ -1,0 +1,101 @@
+<table id="datagrid_newstab0" toolbar="#tb" class="datagrid">
+    <thead>
+        <tr>
+            <th data-options="field:'id',align:'center'" rowspan="2" width="50">ID</th>
+            <th data-options="field:'title'" width="250">标题</th>
+            <th data-options="field:'last_modify'" width="79">更新时间</th>
+            <th data-options="field:'is_post'" width="55">是否发布</th>
+            <th data-options="field:'name'" width="100">所属分类</th>
+            <th data-options="field:'view'" width="30">预览</th>
+            <th data-options="field:'send_date'" width="100">创建时间</th>
+        </tr>
+    </thead>
+</table>
+<div id="tb" style="padding:5px;height:auto">
+		<div style="margin-bottom:5px">
+			<a href="#" id="btnadd_newstab0" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加文档</a>
+			<a href="#" id="btndel_newstab0" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">删除信息</a>
+		</div>
+		<div>
+			信息搜索: <input style="line-height:16px; height:16px;border:1px solid #ccc;width:120px">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+		</div>
+</div>
+<script>
+$(function(){
+	var height = $('.indexcenter').height();
+	var classId = 'newstab0';
+	var hrefadd = 'news/add.html';
+	var hrefcancel = 'news/del.html';
+	var urljson = 'news/listJsonId.html?id=0';
+	//openDatagrid(classId,urljson,hrefadd,hrefedit,hrefcancel);
+	$('#datagrid_'+classId).datagrid({
+		url:urljson,
+		idField:'id',
+		pagination:true,
+		rownumbers:true,
+		fitColumns:true,
+		checkbox:true,
+		height:height-65,
+		//singleSelect:true,
+		columns:[[  
+		{
+			field:'id',
+			align:'center',
+			title:'ID',
+			width:50
+		},{
+			field:'title',
+			title:'标题',
+			width:250
+		},{
+			field:'last_modify',
+			title:'更新时间',
+			width:79,
+		},{
+			field:'is_post',
+			title:'是否发布',
+			width:55
+		},{
+			field:'name',
+			title:'所属分类',
+			width:100
+		},{
+			field:'send_date',
+			title:'创建时间',
+			width:100,
+		},{
+			field:'action',
+			title:'动作',
+			width:35,
+			formatter : function(value, row, index) {
+				//alert(row.id);
+				return '<img src="../themes/icons/search.png" width="16" height="16" onclick="admin_news_viewFun(\''+row.id+'\')" />&nbsp;<img src="../themes/icons/pencil.png" width="16" height="16" onclick="admin_news_editFun(\''+row.id+'\')" />&nbsp;';
+			}
+		}
+		]],	
+		frozenColumns:[[
+				{
+					field:'ck',
+					checkbox:true
+				}
+			]]
+	});
+	var p = $('#datagrid_'+classId).datagrid('getPager');
+	$(p).pagination({
+		pageSize: 20,//每页显示的记录条数，默认为10
+		pageList: [10,20,30,40,50,100],//可以设置每页记录条数的列表
+		beforePageText: '第',//页数文本框前显示的汉字
+		afterPageText: '页    共 {pages} 页',
+		displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'
+	})
+	$('#btnadd_newstab0').click(function() {
+		var title = '添加文档';
+		admin_news_appendFun(classId,hrefadd,title);
+	});
+	$('#btndel_newstab0').click(function() {
+		var title = '删除文档';
+		admin_news_removeFun(classId,hrefcancel,title);
+	});
+})
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>  
+
+<div class="pagecontent">
+    <table id="datagrid_tagsManage">
+    </table>    
+    <script>
+	
+        $(function(){
+            var classId = 'tagsManage';
+            var hrefadd = 'cms/main/tags/tagsadd.html';
+            var hrefedit = 'cms/main/tags/tagsedit.html';
+            var height = $('.indexcenter').height();
+            $('#datagrid_'+classId).datagrid({
+    			url:'LoadTagsAction!LoadTags.action',
+    			fitColumns:true,
+    			pagination:false,
+    			rownumbers:true,
+    			autoRowHeight:false,
+    			showFooter:true,
+    			height:height-50,
+    			animate:true,
+    			columns:[[	
+    				{field:'checkbox',checkbox:true},
+        			{field:'id',title:"标签ID",width:100},
+        			{field:'tagname',title:"标签名",width:100},
+        			{field:'imageaddress',title:"图片地址",width:100},
+        			{field:'selected',title:"rank值",width:100}
+    			]],
+    			toolbar:[
+				
+				{
+    				id:'btnadd'+classId,
+    				text:'新建标签',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '新建标签';
+    					admin_tags_appendFun(classId,hrefadd,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnedit'+classId,
+    				text:'编辑标签',
+    				iconCls:'icon-edit',
+    				handler:function(){
+    					var title = '编辑标签';
+    					admin_tags_editFun(classId,hrefedit);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btndelete'+classId,
+    				text:'删除标签',
+    				iconCls:'icon-remove',
+    				handler:function(){
+    					var title = '删除标签';
+    					admin_tags_cancelFun(classId);
+    					}
+    				},
+				'-',
+				{
+    				text: '搜索：<input type="text" id="tagssearch"/>',
+    				},
+				{
+    				id:'btnsearch'+classId,
+    				iconCls:'icon-search',
+    				handler:function(){
+    					var keyword = $('#tagssearch').attr('value');
+    					admin_tags_searchFun(classId,keyword);
+    					}	
+    				},
+				'-'
+    			],
+			});		
+		});		
+    </script>
+
+</div>

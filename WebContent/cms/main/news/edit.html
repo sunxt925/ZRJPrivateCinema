@@ -1,0 +1,130 @@
+<script type="text/javascript">
+//页面依赖性强，不建议移动
+$(pageInit);
+function pageInit()
+{
+	$('#elm1').xheditor({upLinkUrl:"xheditor-1.1.14/tools/upload.php",upLinkExt:"zip,rar,txt",upImgUrl:"xheditor-1.1.14/tools/upload.php",upImgExt:"jpg,jpeg,gif,png",upFlashUrl:"xheditor-1.1.14/tools/upload.php",upFlashExt:"swf",upMediaUrl:"xheditor-1.1.14/tools/upload.php",upMediaExt:"wmv,avi,wma,mp3,mid"});
+}
+</script>
+<form class="tableform" id="newseditform" action="index.php?ctl=content/articles&amp;act=addArticle&amp;p[0]="
+method="post">
+    <input type="hidden" value="" name="node_id">
+    <input type="hidden" id="goodsid" value="" name="goodsid">
+    <div class="division">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="shopping_setting">
+            <tbody>
+                <tr>
+                    <th>
+                        栏目：
+                    </th>
+                    <td>
+                        <input name="sort_id" id="sort_combotree" value="" style="width:240px" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        标题：
+                    </th>
+                    <td>
+                        <input name="title" type="text" class="easyui-validatebox easyui_form_input" style="width:240px;" value="这是标题" data-options="required:true">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        副标题：
+                    </th>
+                    <td>
+                        <input name="title" type="text" class="easyui-validatebox easyui_form_input" style="width:240px;" value="这是副标题" data-options="required:true">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        设置：
+                    </th>
+                    <td>
+                        <label>
+                            <input type="checkbox" checked="CHECKED" id="checkbox" name="ifpub">
+                            发布
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="division">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="shopping_setting">
+            <tbody>
+                <tr>
+                    <th>
+                        内容
+                    </th>
+                    <td>
+                        <textarea id="elm1" name="elm1" rows="12" cols="80" style="width: 100%; height:350px;">
+&lt;p&gt;当前实例调用的Javascript源代码为：&lt;/p&gt;&lt;p&gt;$('#elm1').xheditor({upLinkUrl:"upload.php",upLinkExt:"zip,rar,txt",upImgUrl:"upload.php",upImgExt:"jpg,jpeg,gif,png",upFlashUrl:"upload.php",upFlashExt:"swf",upMediaUrl:"upload.php",upMediaExt:"avi"});&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;请确保当前目录中的upload.php有相应的PHP执行权限，若您使用的是其它的服务器脚本语言，请自行对初始化参数中的upLinkUrl、upImgUrl、upFlashUrl和upMediaUrl进行修改，并开发相应服务器上传接收程序。&lt;/p&gt;注：upload.php仅为演示代码，若您希望在自己的项目中实际使用，请自行修改代码或者重新开发，开发过程中请注意上传文件的格式及大小限制，注意服务器安全问题。 &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;上传接收程序开发规范：&lt;br /&gt;&lt;/strong&gt;1,上传文件域名字为：filedata&lt;br /&gt;2,返回结构必需为json，并且结构如下：{"err":"","msg":"200906030521128703.gif"}&lt;br /&gt;若上传出现错误，请将错误内容保存在err变量中；若上传成功，请将服务器上的绝对或者相对地址保存在msg变量中。&lt;br /&gt;编辑器若发现返回的err变量不为空，则弹出窗口显示返回的错误内容。&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;上传管理方案建议：&lt;/strong&gt;&lt;br /&gt;1,在编辑器初始化时在upload.php后面跟上一个服务器生成的绝对唯一的跟踪值，例如：upload.php?infoid=121312121&lt;br /&gt;2,在服务器接收程序中以这个跟踪值保存到数据库中，同样可以限制单个跟踪值下总上传文件数或者总文件大小，否则就是一个可以上传无限个文件的漏洞了&lt;br /&gt;3,最终当前表单提交时，再根据编辑器提交的HTML内容和数据库中上传内容进行比较，删除所有没有使用的上传文件&lt;br /&gt;4,定期由服务器脚本删除上传数据库中没提交的文件记录，这样就能防止别人将您的网站作为免费相册空间了
+	</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        TITLE
+                        <br>
+                        (页面标题)
+                    </th>
+                    <td>
+                        <input type="text" value="" class="easyui_form_input" maxlength="255" style="width:360px" name="seo_title">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        META_KEYWORDS
+                        <br>
+                        (页面关键词)
+                    </th>
+                    <td>
+                        <input type="text" value="" class="easyui_form_input" maxlength="255" style="width:360px" name="seo_keywords">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        META_DESCRIPTION
+                        <br>
+                        (页面描述)
+                    </th>
+                    <td>
+                        <textarea maxlength="255/" cols="35" class="easyui_form_textarea" style="width:360px" rows="4" name="seo_description">
+                        </textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+<div class="pageform">
+    <script>
+        $(function() {
+            $('#sort_combotree').combotree({
+                url:'news/jsonTree.html',
+                required:true,
+                onChange:function(){
+					/*              
+					//设置分类ID
+					var nid = $(this).combotree('getValue');
+                    var href = '/admin.php/News/tempmodel';
+                    $.ajax({
+                        url:href,
+                        type:'post',
+                        data:{
+                            id:nid
+                        },
+                        dataType:'html',
+                        success:function(data){
+                            //alert(data);
+                            $('#conModel').html(data);
+                        }
+                    });//ajax
+					*/                
+					}
+            });
+        });
+    </script>
+</div>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="user" extends="struts-default">
+		<action name="LoginAction" class="cn.edu.cqu.csp.action.login.LoginAction">
+			<result name="success">/WEB-INF/index.jsp</result>
+			<result name="error" >/loginError.html</result>
+		</action>
+	</package>
+	
+	<package name="json" extends="json-default" >  
+		
+		<action name="AddUserAction" class="cn.edu.cqu.csp.action.AddUserAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="EditUserAction" class="cn.edu.cqu.csp.action.EditUserAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="DeleteUserAction" class="cn.edu.cqu.csp.action.DeleteUserAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="LoadTagsAction"  
+            class="cn.edu.cqu.csp.action.tags.LoadTagsAction">  
+            <result type="json">  
+                <param name="root">dataMap</param>
+            </result>  
+        </action>  
+        
+        <action name="LoadMovieTagsAction"  
+            class="cn.edu.cqu.csp.action.tags.LoadMovieTagsAction">  
+            <result type="json">  
+                <param name="root">list</param>
+            </result>  
+        </action>  
+        <action name="LoadMovieSitesAction"  
+            class="cn.edu.cqu.csp.action.sites.LoadMovieSitesAction">  
+            <result type="json">  
+                <param name="root">list</param>
+            </result>  
+        </action> 
+        <action name="AddTagsAction" class="cn.edu.cqu.csp.action.tags.AddTagsAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="EditTagsAction" class="cn.edu.cqu.csp.action.tags.EditTagsAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="DeleteTagsAction" class="cn.edu.cqu.csp.action.tags.DeleteTagsAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="SearchTagsAction" class="cn.edu.cqu.csp.action.tags.SearchTagsAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="SearchMoviesAction" class="cn.edu.cqu.csp.action.movies.SearchMoviesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="AddCountAction" class="cn.edu.cqu.csp.action.movies.AddCountAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="SearchTrailersAction" class="cn.edu.cqu.csp.action.trailers.SearchTrailersAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="LoadMessagesAction"  
+            class="cn.edu.cqu.csp.action.messages.LoadMessagesAction">  
+            <result type="json">  
+                <param name="root">dataMap</param>
+            </result>  
+        </action>  
+        
+        <action name="AddMessagesAction" class="cn.edu.cqu.csp.action.messages.AddMessagesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="EditMessagesAction" class="cn.edu.cqu.csp.action.messages.EditMessagesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="DeleteMessagesAction" class="cn.edu.cqu.csp.action.messages.DeleteMessagesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="LoadMoviesAction" class="cn.edu.cqu.csp.action.movies.LoadMoviesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="AddMoviesAction" class="cn.edu.cqu.csp.action.movies.AddMoviesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>	
+		<action name="AddMovieTagsAction" class="cn.edu.cqu.csp.action.movies.AddMovieTagsAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>	
+		<action name="ImportMoviesAction" class="cn.edu.cqu.csp.action.movies.ImportMoviesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="GetMoviesInfoAction" class="cn.edu.cqu.csp.action.movies.GetMoviesInfoAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="EditMoviesAction" class="cn.edu.cqu.csp.action.movies.EditMoviesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="DeleteMoviesAction" class="cn.edu.cqu.csp.action.movies.DeleteMoviesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>	
+		<action name="LoadSitesAction" class="cn.edu.cqu.csp.action.sites.LoadSitesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>	
+		<action name="AddSitesAction" class="cn.edu.cqu.csp.action.sites.AddSitesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="EditSitesAction" class="cn.edu.cqu.csp.action.sites.EditSitesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="DeleteSitesAction" class="cn.edu.cqu.csp.action.sites.DeleteSitesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="LoadLivesAction" class="cn.edu.cqu.csp.action.lives.LoadLivesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>	
+		<action name="AddLivesAction" class="cn.edu.cqu.csp.action.lives.AddLivesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="EditLivesAction" class="cn.edu.cqu.csp.action.lives.EditLivesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="DeleteLivesAction" class="cn.edu.cqu.csp.action.lives.DeleteLivesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="SearchLivesAction" class="cn.edu.cqu.csp.action.lives.SearchLivesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="SearchSitesAction" class="cn.edu.cqu.csp.action.sites.SearchSitesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="LoadTrailersAction" class="cn.edu.cqu.csp.action.trailers.LoadTrailersAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>	
+		
+		<action name="GetTrailersInfoAction" class="cn.edu.cqu.csp.action.trailers.GetTrailersInfoAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="AddTrailersAction" class="cn.edu.cqu.csp.action.trailers.AddTrailersAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="EditTrailersAction" class="cn.edu.cqu.csp.action.trailers.EditTrailersAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="AddTrailerTagsAction" class="cn.edu.cqu.csp.action.trailers.AddTrailerTagsAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="ImportTrailersAction" class="cn.edu.cqu.csp.action.trailers.ImportTrailersAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="DeleteTrailersAction" class="cn.edu.cqu.csp.action.trailers.DeleteTrailersAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="MoviePageAction" class="cn.edu.cqu.csp.action.ui.MoviePageAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="PageAction" class="cn.edu.cqu.csp.action.ui.PageAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="UISearchMoviesAction" class="cn.edu.cqu.csp.action.ui.SearchMoviesAction">
+			<result type="json">  
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+        <action name="LoadUserAction"  
+            class="cn.edu.cqu.csp.action.LoadUserAction">  
+            <result type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <!-- 默认将会序列所有有返回值的getter方法的值，而无论该方法是否有对应属性 -->  
+                <param name="root">dataMap</param>
+                <!-- 指定是否序列化空的属性 -->  
+                <!--  
+                <param name="excludeNullProperties">true</param> 
+                -->  
+                <!-- 这里指定将序列化dataMap中的那些属性 -->  
+                <!--    
+                <param name="includeProperties">  
+                    userList.*   
+                </param>  
+                 -->  
+                <!-- 这里指定将要从dataMap中排除那些属性，这些排除的属性将不被序列化，一半不与上边的参数配置同时出现 -->  
+                <!--    
+                <param name="excludeProperties">  
+                    SUCCESS   
+                </param>  
+                -->  
+            </result>  
+        </action>  
+	</package>  
+</struts>    

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<div class="pagecontent"  >
+    <table id="datagrid_userManage">
+    </table>
+    <script  >
+        $(function(){
+            var classId = 'userManage';
+            var hrefadd = 'cms/main/users/useradd.html';
+            var hrefedit = 'cms/main/users/useredit.html';
+            var height = $('.indexcenter').height();
+            $('#datagrid_'+classId).datagrid({
+    			url:'LoadUserAction!LoadUser.action',   			
+    			fitColumns:true,
+    			pagination:false,
+    			rownumbers:true,
+    			autoRowHeight:false,
+    			showFooter:true,
+    			height:height-50,
+    			animate:true,
+    			columns:[[	
+    				{field:'checkbox',checkbox:true},
+        			{field:'id',sortable:true,title:"用户ID",width:100},
+        			{field:'username',title:"用户 名",width:100},
+        			{field:'password',title:"密码",width:100}
+    			]],
+    			toolbar:[{
+    				id:'btnadd'+classId,
+    				text:'新建用户',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '新建用户';
+    					admin_user_appendFun(classId,hrefadd,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnedit'+classId,
+    				text:'编辑用户',
+    				iconCls:'icon-edit',
+    				handler:function(){
+    					var title = '编辑用户';
+    					admin_user_editFun(classId,hrefedit);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btndelete'+classId,
+    				text:'删除用户',
+    				iconCls:'icon-remove',
+    				handler:function(){
+    					var title = '删除用户';
+    					admin_user_cancelFun(classId);
+    					}
+    				}
+    			]
+			});
+		});
+            /* $('#datagrid_'+classId).datagrid({
+				url:urljson,
+				idField:'cat_id',
+				treeField:'name',
+				pagination:false,
+				rownumbers:true,
+				fitColumns:true,
+				autoRowHeight:false,
+				showFooter:true,
+				height:height-50,
+				animate:true,
+				toolbar:[{
+					id:'btnadd'+classId,
+					text:'添加',
+					iconCls:'icon-add',
+					handler:function(){
+						var title = '添加分类';
+						admin_newscat_appendFun(classId,hrefadd,title);
+					}
+				},'-',{
+					id:'btnedit'+classId,
+					text:'展开',
+					iconCls:'icon-redo',
+					handler: function() {
+						var node = $('#treegrid_newssort').treegrid('getSelected');
+						if (node) {
+							$('#treegrid_newssort').treegrid('expandAll', node.cid);
+						} else {
+							$('#treegrid_newssort').treegrid('expandAll');
+						}
+					}
+				},'-',{
+					id:'btnedit'+classId,
+					text:'折叠',
+					iconCls:'icon-undo',
+					handler: function() {
+						var node = $('#treegrid_newssort').treegrid('getSelected');
+						if (node) {
+							$('#treegrid_newssort').treegrid('collapseAll', node.cid);
+						} else {
+							$('#treegrid_newssort').treegrid('collapseAll');
+						}
+					}
+				},'-',{
+					id:'btnedit'+classId,
+					text:'刷新',
+					iconCls:'icon-reload',
+					handler: function() {
+						$('#treegrid_newssort').treegrid('reload');
+					}
+				}
+				],
+                columns:[[
+                        {field:'cat_id',title:'ID',width:20,align:'center'},
+                        {field:'name',title:'分类名称',width:200},
+                        {field:'seq',title:'排序',width:50},
+                        {field:'seo_title',title:'页面标题',width:200},
+                        {field:'action',
+			title:'动作',
+			width:50,
+			formatter : function(value, row, index) {
+				//alert(row.id);
+				return '<img src="../themes/icons/pencil.png" width="16" height="16" onclick="admin_newscat_editFun(\''+row.cat_id+'\')" />&nbsp;<img src="../themes/icons/cancel.png" width="16" height="16" onclick="admin_newscat_cancelFun(\''+row.cat_id+'\')" />&nbsp;';
+			}
+		}
+                    ]]
+            })
+        }) */
+
+    </script>
+
+</div><!--pagecontent-->

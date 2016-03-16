@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<div class="pagecontent"  >
+    <table id="datagrid_messagesManage">
+    </table>
+    <script  >
+        $(function(){
+            var classId = 'messagesManage';
+            var hrefadd = 'cms/main/messages/messagesadd.html';
+            var hrefedit = 'cms/main/messages/messagesedit.html';
+            var height = $('.indexcenter').height();
+            $('#datagrid_'+classId).datagrid({
+    			url:'LoadMessagesAction!LoadMessages.action',
+    			fitColumns:true,
+    			pagination:false,
+    			rownumbers:true,
+    			autoRowHeight:false,
+    			showFooter:true,
+    			height:height-50,
+    			animate:true,
+    			columns:[[	
+    				{field:'checkbox',checkbox:true},
+        			{field:'id',title:"ID",width:100},
+        			{field:'content',title:"信息内容",width:100},
+        			{field:'selected',title:"是否前台显示",width:100}
+    			]],
+    			toolbar:[{
+    				id:'btnadd'+classId,
+    				text:'新建信息',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '新建信息';
+    					admin_messages_appendFun(classId,hrefadd,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnedit'+classId,
+    				text:'编辑信息',
+    				iconCls:'icon-edit',
+    				handler:function(){
+    					var title = '编辑信息';
+    					admin_messages_editFun(classId,hrefedit);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btndelete'+classId,
+    				text:'删除信息',
+    				iconCls:'icon-remove',
+    				handler:function(){
+    					var title = '删除信息';
+    					admin_messages_cancelFun(classId);
+    					}
+    				}
+    			]
+			});
+		});
+       
+    </script>
+
+</div><!--pagecontent-->

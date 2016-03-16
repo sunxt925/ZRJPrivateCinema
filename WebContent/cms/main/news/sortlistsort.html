@@ -1,0 +1,25 @@
+
+<table id="treegrid_sortlisttab1" class="sortlisttab1">
+    <thead>
+        <tr>
+            <th data-options="field:'id',align:'center'" rowspan="2" width="50">ID</th>
+            <th data-options="field:'text'" width="200">标题</th>
+            <th data-options="field:'parent_id'" width="200">parent_id</th>
+            <th data-options="field:'status'" width="200">myorder</th>
+            <th data-options="field:'myorder'" width="80">操作</th>
+        </tr>
+    </thead>
+</table>
+<script>
+    $(function(){
+        var height = $('.indexcenter').height();
+        var classId = 'sortlisttab1';
+        var hrefadd = '/admin.php/LinkPage/sortlistadd?id=1';
+        var hrefedit = '/admin.php/LinkPage/sortlistedit';
+        var hrefcancel = '/admin.php/LinkPage/sortlistdelete';
+        var urljson = '/admin.php/LinkPage/jsonTreeId?id=1';
+        $('.layout_'+classId).css('height',height-50);
+        openTreeGrid(classId,urljson,hrefadd,hrefedit,hrefcancel);
+
+    })
+</script>

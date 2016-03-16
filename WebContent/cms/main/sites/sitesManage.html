@@ -1,0 +1,78 @@
+<!DOCTYPE html>  
+
+<div class="pagecontent">
+    <table id="datagrid_sitesManage">
+    </table>    
+    <script>
+	
+        $(function(){
+            var classId = 'sitesManage';
+            var hrefadd = 'cms/main/sites/sitesadd.html';
+            var hrefedit = 'cms/main/sites/sitesedit.html';
+            var height = $('.indexcenter').height();
+            $('#datagrid_'+classId).datagrid({
+    			url:'LoadSitesAction!LoadSites.action',
+    			fitColumns:true,
+    			pagination:false,
+    			rownumbers:true,
+    			autoRowHeight:false,
+    			showFooter:true,
+    			height:height-50,
+    			animate:true,
+    			columns:[[	
+    				{field:'checkbox',checkbox:true},
+        			{field:'id',title:"站点ID",width:100},
+        			{field:'sitename',title:"站点名",width:100},
+        			{field:'sitepath',title:"站点路径",width:100}
+    			]],
+    			toolbar:[
+				
+				{
+    				id:'btnadd'+classId,
+    				text:'新建站点',
+    				iconCls:'icon-add',
+    				handler:function(){
+    					var title = '新建站点';
+    					admin_sites_appendFun(classId,hrefadd,title);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btnedit'+classId,
+    				text:'编辑站点',
+    				iconCls:'icon-edit',
+    				handler:function(){
+    					var title = '编辑站点';
+    					admin_sites_editFun(classId,hrefedit);
+    					}
+    				},
+    				'-',
+    				{
+    				id:'btndelete'+classId,
+    				text:'删除站点',
+    				iconCls:'icon-remove',
+    				handler:function(){
+    					var title = '删除站点';
+    					admin_sites_cancelFun(classId);
+    					}
+    				},
+				'-',
+				{
+    				text: '搜索：<input type="text" id="sitessearch"/>',
+    				},
+				{
+    				id:'btnsearch'+classId,
+    				iconCls:'icon-search',
+    				handler:function(){
+    					var keyword = $('#sitessearch').attr('value');
+    					admin_sites_searchFun(classId,keyword);
+    					}	
+    				},
+				'-'
+				
+    			],
+			});		
+		});		
+    </script>
+
+</div>

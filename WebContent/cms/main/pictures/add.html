@@ -1,0 +1,93 @@
+<script type="text/javascript">
+//页面依赖性强，不建议移动
+$(pageInit);
+function pageInit()
+{
+	$('#elm1').xheditor({upLinkUrl:"xheditor-1.1.14/tools/upload.php",upLinkExt:"zip,rar,txt",upImgUrl:"xheditor-1.1.14/tools/upload.php",upImgExt:"jpg,jpeg,gif,png",upFlashUrl:"xheditor-1.1.14/tools/upload.php",upFlashExt:"swf",upMediaUrl:"xheditor-1.1.14/tools/upload.php",upMediaExt:"wmv,avi,wma,mp3,mid"});
+}
+</script>
+<form class="tableform" action="index.php?ctl=content/articles&amp;act=addArticle&amp;p[0]="
+method="post">
+    <input type="hidden" value="" name="node_id">
+    <input type="hidden" id="goodsid" value="" name="goodsid">
+    <div class="division">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="shopping_setting">
+            <tbody>
+                <tr>
+                    <th>
+                        上传图片：
+                    </th>
+                    <td>
+                        <input type="file" name="picpath">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        栏目：
+                    </th>
+                    <td>
+                        <input name="sort_id" id="sort_combotree" value="" style="width:240px" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        设置：
+                    </th>
+                    <td>
+                        <label>
+                            <input type="checkbox" checked="CHECKED" id="checkbox" name="ifpub">
+                            发布
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="division">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="shopping_setting">
+            <tbody>
+                
+                <tr>
+                    <th>
+                        META_DESCRIPTION
+                        <br>
+                        (图片描述)
+                    </th>
+                    <td>
+                        <textarea maxlength="255/" cols="35" class="easyui_form_textarea" style="width:360px" rows="4" name="seo_description">
+                        </textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+<div class="pageform">
+    <script>
+        $(function() {
+            $('#sort_combotree').combotree({
+                url:'pictures/jsonTree.html',
+                required:true,
+                onChange:function(){
+					/*              
+					//设置分类ID
+					var nid = $(this).combotree('getValue');
+                    var href = '/admin.php/News/tempmodel';
+                    $.ajax({
+                        url:href,
+                        type:'post',
+                        data:{
+                            id:nid
+                        },
+                        dataType:'html',
+                        success:function(data){
+                            //alert(data);
+                            $('#conModel').html(data);
+                        }
+                    });//ajax
+					*/                
+					}
+            });
+        });
+    </script>
+</div>

@@ -1,0 +1,26 @@
+<div class="division">
+<form class="tableform" id="trailersaddtagsform" action="" method="post" >
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="shopping_setting">
+            <tbody>
+                <tr>
+                    <th>
+                       	标签：
+                    </th>
+                    <td>
+                    	<input type="hidden" name="id" id="id" value="2">
+                        <input type="text" name="tagname" id="tagname" style="width:100%;" class="easyui-validatebox easyui-combobox" 
+                        data-options="valueField:'tagname',textField:'tagname',url:'LoadMovieTagsAction!LoadMovieTags.action'">
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+</form>
+<script>
+	/*$('#tagname').combobox({
+		url:"LoadTagsAction!LoadTags.action",
+		valueField:"id",
+		textField:"tagname"	,	
+	});*/
+</script>
+</div>

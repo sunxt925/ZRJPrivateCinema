@@ -1,0 +1,41 @@
+
+.left {float:left;list-style: outside none none;}
+.right {float:right}
+.wrapper {width:100%;overflow:hidden}
+/* Global properties ======================================================== */
+.slider {width:10%;height:100%;margin-bottom:0px;float:left;line-height:0px}
+.slider .items {display:none}
+.pagination {position:absolute;left:0px;top:20px;z-index:3;list-style: outside none none;}
+.pagination li {width:111px;height:111px;margin-bottom:6px;background: rgba(0, 0, 0, 0.5);}
+.pagination a {display:block;position:relative;cursor:pointer;padding:0px 0 0 0px;color:#fff;text-decoration:none;text-transform:uppercase;width:150px;height:111px}
+.pagination a span {display:block;width:67%;height:100%;font-family: "Microsoft YaHei";font-weight:bolder;text-align:center;font-size:25px;margin-top:16px;padding-left:5px;position:absolute}
+#banner1 {/*background:url(../images/left/icon1.png) 0 0 no-repeat;*/opacity:0.5}
+#banner1 a {background:url(../images/left/banner1_active.png) -250px 0 no-repeat}
+#banner2 {/*background:url(../images/left/icon2.png) 0 0 no-repeat;*/opacity:0.5}
+#banner2 a {background:url(../images/left/banner1_active.png) -250px 0 no-repeat}
+#banner3 {/*background:url(../images/left/icon3.png) 0 0 no-repeat;*/opacity:0.5}
+#banner3 a {background:url(../images/left/banner1_active.png) -250px 0 no-repeat}
+#banner4 {/*background:url(../images/left/icon4.png) 0 0 no-repeat;*/opacity:0.5}
+#banner4 a {background:url(../images/left/banner1_active.png) -250px 0 no-repeat}
+#banner5 {/*background:url(../images/left/icon5.png) 0 0 no-repeat;*/opacity:0.5}
+#banner5 a {background:url(../images/left/banner1_active.png) -250px 0 no-repeat}
+#banner6 {/*background:url(../images/left/icon6.png) 0 0 no-repeat;*/opacity:0.5}
+#banner6 a {background:url(../images/left/banner1_active.png) -250px 0 no-repeat}
+#banner7 {/*background:url(../images/left/icon7.png) 0 0 no-repeat;*/opacity:0.5}
+#banner7 a {background:url(../images/left/banner1_active.png) -250px 0 no-repeat}
+.pagination #banner1:hover, .pagination #banner1.current, .pagination #banner2:hover, .pagination #banner2.current, .pagination #banner3:hover, .pagination #banner3.current , .pagination #banner4:hover, .pagination #banner4.current, .pagination #banner5:hover, .pagination #banner5.current, .pagination #banner6:hover, .pagination #banner6.current, .pagination #banner7:hover, .pagination #banner7.current{opacity:1.0}
+
+@media all and (min-width:601px) and (max-width:1000px) {
+	.pagination{
+	transform:scale(0.7);
+	top:-120px;
+	}
+}
+
+@media all and (min-width:1001px) and (max-width:1420px) {
+	.pagination{
+	transform:scale(0.7);
+	top:-112px;
+	left:-25px;
+	}
+}

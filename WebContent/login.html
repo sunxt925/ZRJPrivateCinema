@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html style="height:100%;width:100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>管理员登录</title>
+	<link rel="stylesheet" type="text/css" href="cms/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="cms/themes/icon.css">
+	<script type="text/javascript" src="cms/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="cms/jquery.easyui.min.js"></script>
+	<script>
+	//该页面功能相对独立，尽量单独使用
+		$(function(){
+			$('#win').window({  
+				collapsible:false,  
+				minimizable:false,  
+				maximizable:false,
+				resizable:false,
+				closable:false,
+				draggable:false
+			});  
+		});
+	</script>
+	<style>
+		#login_form em{
+			float:left;
+			width:56px;
+			line-height:22px;
+			font-style:normal;
+		}
+	</style>
+</head>
+<body style="height:100%;width:100%;overflow:hidden;border:none;" >
+	<!--
+	<h1>Window</h1>
+	<button onclick="javascript:$('#win').window('open')">open</button>
+	-->
+	<div id="win" class="easyui-window" title="管理员登录" style="width:300px;height:260px;">
+		<form id="login_form" style="padding:10px 20px 10px 40px;" action="LoginAction.action" method="post">
+			<p><em>用户名</em><input type="text" id="username" name="username"></p>
+			<p><em>密码</em><input type="password" id="password" name="password"></p>
+			<p><em> </em></p>
+			<div style="padding:5px;text-align:center;">
+				<a href="#" onclick="$('#login_form').submit();return false" class="easyui-linkbutton" icon="icon-ok">登录</a>
+				<a href="#" onclick="$('#login_form')[0].reset()" class="easyui-linkbutton" icon="icon-cancel">重填</a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

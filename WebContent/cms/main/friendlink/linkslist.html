@@ -1,0 +1,111 @@
+<table id="datagrid_linkstab" toolbar="#tb" class="datagrid">
+    <thead>
+        <tr>
+            <th data-options="field:'id',align:'center'" rowspan="2" width="150">鍙嬫儏閾炬帴缂栧彿</th>
+            <th data-options="field:'linkname'" width="250">鍙嬫儏閾炬帴鍚嶇О</th>
+            <th data-options="field:'linkurl'" width="129">閾炬帴缃戝潃</th>
+            <th data-options="field:'linktype'" width="105">閾炬帴鍒嗙被</th>
+            <th data-options="field:'view'" width="30">鎿嶄綔</th>
+        </tr>
+    </thead>
+</table>
+<div id="tb" style="padding:5px;height:auto">
+		<div style="margin-bottom:5px">
+			<a href="#" id="btnadd_linkstab" class="easyui-linkbutton" iconCls="icon-add" plain="true">娣诲姞</a>
+			<a href="#" id="btndel_linkstab" class="easyui-linkbutton" iconCls="icon-remove" plain="true">鍒犻櫎</a>
+		</div>
+</div>
+<script>
+$(function(){
+	var height = $('.indexcenter').height();
+	var classId = 'linkstab';
+	var hrefadd = 'friendlink/add.html';
+	var hrefcancel = 'friendlink/del.html';
+	var urljson = 'friendlink/listJsonId.html?id=0';
+	//openDatagrid(classId,urljson,hrefadd,hrefedit,hrefcancel);
+	$('#datagrid_'+classId).datagrid({
+		url:urljson,
+		idField:'id',
+		pagination:true,
+		rownumbers:true,
+		fitColumns:true,
+		checkbox:true,
+		height:height-65,
+		//singleSelect:true,
+		columns:[[  
+		{
+			field:'id',
+			align:'center',
+			title:'鍙嬫儏閾炬帴缂栧彿',
+			width:150
+		},{
+			field:'linkname',
+			title:'鍙嬫儏閾炬帴鍚嶇О',
+			width:250
+		},{
+			field:'linkurl',
+			title:'閾炬帴缃戝潃',
+			width:129,
+		},{
+			field:'linktype',
+			title:'閾炬帴鍒嗙被',
+			width:105
+		},{
+			field:'action',
+			align:'center',
+			title:'鎿嶄綔',
+			width:50,
+			formatter : function(value, row, index) {
+				//alert(row.id);
+				return '<img src="../../themes/icons/pencil.png" width="16" height="16" onclick="admin_links_editFun(\''+row.id+'\')" />&nbsp;<img src="../../themes/icons/cancel.png" width="16" height="16" onclick="admin_links_cancelFun(\''+row.id+'\')" />&nbsp;';
+			}
+		}
+		]],	
+		frozenColumns:[[
+				{
+					field:'ck',
+					checkbox:true
+				}
+			]]
+	});
+	var p = $('#datagrid_'+classId).datagrid('getPager');
+	$(p).pagination({
+		pageSize: 20,//姣忛〉鏄剧ず鐨勮褰曟潯鏁帮紝榛樿涓�0
+		pageList: [10,20,30,40,50,100],//鍙互璁剧疆姣忛〉璁板綍鏉℃暟鐨勫垪琛�
+		beforePageText: '绗�,//椤垫暟鏂囨湰妗嗗墠鏄剧ず鐨勬眽瀛�
+		afterPageText: '椤�   鍏�{pages} 椤�,
+		displayMsg: '褰撳墠鏄剧ず {from} - {to} 鏉¤褰�  鍏�{total} 鏉¤褰�
+	})
+	$('#btnadd_linkstab').click(function() {
+		var title = '娣诲姞閾炬帴';
+		openDialog(classId,hrefadd,title);
+	});
+	$('#btndel_linkstab').click(function() {
+		var title = '鍒犻櫎閾炬帴';
+		var ids = [];
+		var rows = $('#datagrid_'+classId).datagrid('getSelections');
+		for(var i=0;i<rows.length;i++){
+			ids.push(rows[i].id);
+		}
+		if(ids==''){
+			$.messager.alert('淇℃伅鎻愮ず', '璇烽�鎷╄鎿嶄綔鐨勯」', 'error');
+			return false;
+		}
+		var href = hrefcancel;
+		var title = '鍒犻櫎淇℃伅';
+		$.messager.confirm(title,href, function(){
+			$.ajax({
+				url:href,
+				type:'post',
+				data:{
+					id:ids
+				},
+				dataType:'json',
+				success:function(data){
+					formAjax(data,classId);
+				}
+			});
+		});//$
+	});
+})
+</script>
