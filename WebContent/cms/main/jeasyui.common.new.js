@@ -1073,6 +1073,7 @@ function admin_movies_removeCountFun(classId) {
 }
 
 function admin_movies_searchFun(classId,keyword) {
+	//alert("fdgd");
 	var kw = encodeURI(keyword);
 	$.ajax({
               url: 'SearchMoviesAction!SearchMovies.action',

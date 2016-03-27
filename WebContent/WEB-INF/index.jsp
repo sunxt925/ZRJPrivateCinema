@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="cms/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="cms/main/portal.css">
     <link rel="stylesheet" type="text/css" href="cms/main/common.css">
+    <link rel="stylesheet" type="text/css" href="cms/main/css/style.css">
 	<script type="text/javascript" src="cms/jquery-1.8.0.min.js"></script>
 	
 	<script type="text/javascript" src="cms/jquery.easyui.min.js"></script>
@@ -105,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     
 	<!--//主体内容部分-->
-    <div data-options="region:'center'" class="indexcenter" title="欢迎使用买买茶游戏后台管理系统">
+    <div data-options="region:'center'" class="indexcenter" title="欢迎使用自然私人影院后台管理系统">
         <div id="tabs_index" class="easyui-tabs"  fit="true" border="false"  >
             <div title="首页" style="overflow:hidden; " data-options="href:'cms/main/portal.html'">
             </div>

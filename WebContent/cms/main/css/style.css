@@ -1,0 +1,71 @@
+@CHARSET "UTF-8";
+
+.sender{
+	
+}
+.sender_form{
+	font-size:17px;
+	    width: 300px;
+    margin: 0 auto;
+}
+.sender_submit{
+	margin-left:30px;
+	font-size:17px;
+	width: 100px;
+	height:30px;
+	color: #fff;  
+  
+    background: #70c9e3; /* Old browsers */  
+    background: -moz-linear-gradient(top,  #70c9e3 0%, #39a0be 100%); /* FF3.6+ */  
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#70c9e3), color-stop(100%,#39a0be)); /* Chrome,Safari4+ */  
+    background: -webkit-linear-gradient(top,  #70c9e3 0%,#39a0be 100%); /* Chrome10+,Safari5.1+ */  
+    background: -o-linear-gradient(top,  #70c9e3 0%,#39a0be 100%); /* Opera 11.10+ */  
+    background: -ms-linear-gradient(top,  #70c9e3 0%,#39a0be 100%); /* IE10+ */  
+    background: linear-gradient(top,  #70c9e3 0%,#39a0be 100%); /* W3C */  
+  
+      text-shadow: 1px 1px 1px rgba(255,255,255, .22);  
+  
+    -webkit-border-radius: 30px;  
+    -moz-border-radius: 30px;  
+    border-radius: 30px;  
+  
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);  
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);  
+    box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);  
+  
+    -webkit-transition: all 0.15s ease;  
+    -moz-transition: all 0.15s ease;  
+    -o-transition: all 0.15s ease;  
+    -ms-transition: all 0.15s ease;  
+    transition: all 0.15s ease;  
+}
+.sender_submit:hover {
+	background: #19667d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.sender_submit:active {
+	color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+.big {  
+    padding: 0 40px;  
+    padding-top: 10px;  
+    height: 45px;  
+    text-transform: uppercase;  
+    font: bold 20px/22px Arial, sans-serif;  
+}  
+.sender_old{
+	font-size:17px;font-weight:bold;color:red;
+}
+.sender_text{
+	height: 16px; 
+	padding: 6px 12px; 
+	font-size: 14px; 
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+}

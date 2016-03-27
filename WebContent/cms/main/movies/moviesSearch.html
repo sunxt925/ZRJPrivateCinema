@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
+
 <body>
 <div class="pagecontent">
     <table id="datagrid_moviesManage">
@@ -10,6 +11,7 @@
     <script>
 	
         $(function(){
+        	alert("fsifhnwji");
             var classId = 'moviesManage';
             var hrefadd = 'cms/main/movies/moviesadd.html';
             var hrefaddtags = 'cms/main/movies/moviesaddtags.html';
@@ -17,7 +19,7 @@
             var hrefedit = 'cms/main/movies/moviesedit.html';
             var height = $('.indexcenter').height();
             $('#datagrid_'+classId).datagrid({
-    			url:'LoadMoviesAction!LoadMovies.action',
+    			url:'SearchMoviesAction!SearchMovies.action',
     			fitColumns:true,
     			pagination:false,
     			rownumbers:true,
@@ -133,7 +135,6 @@
     			],
 			});	
           //设置分页控件 
-         // alert(${Search});
             var p = $('#list_data').datagrid('getPager'); 
             $(p).pagination({ 
                 pageSize: 10,//每页显示的记录条数，默认为10 
@@ -147,8 +148,7 @@
                     $(this).pagination('loaded');
                 }*/ 
             }); 
-		});	
- 
+		});		
     </script>
 
 </div>

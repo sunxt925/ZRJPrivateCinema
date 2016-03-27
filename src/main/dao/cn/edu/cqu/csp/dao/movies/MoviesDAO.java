@@ -111,7 +111,7 @@ public class MoviesDAO extends BaseHibernateDAO  {
             throw re;
         }
     }
-    
+   
     
     public List<Movies> findByExample(Movies instance) {
         log.debug("finding Movies instance by example");

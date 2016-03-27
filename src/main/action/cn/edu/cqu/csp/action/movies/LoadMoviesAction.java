@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.json.JSONObject;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts2.ServletActionContext;
+
+import net.sf.json.JSONObject;
 import cn.edu.cqu.csp.dao.movies.Movies;
 import cn.edu.cqu.csp.dao.movies.MoviesDAO;
 import cn.edu.cqu.csp.dao.movietag.MoviestagDAO;
@@ -14,6 +17,7 @@ import cn.edu.cqu.csp.dao.tags.Tags;
 import cn.edu.cqu.csp.dao.tags.TagsDAO;
 import cn.edu.cqu.csp.src.MoviesRecord;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoadMoviesAction extends ActionSupport{
@@ -43,9 +47,22 @@ public class LoadMoviesAction extends ActionSupport{
 	
 	private JSONObject resultObj;
 	
-	
-	
-	
+	private String rows;//每页显示的记录数  
+
+	private String page;//当前第几页
+
+	public String getRows() {  
+		return rows;  
+	}  
+	public void setRows(String rows) {  
+		this.rows = rows;  
+	}  
+	public String getPage() {  
+		return page;  
+	}  
+	public void setPage(String page) {  
+		this.page = page;  
+	}  
 	public int getDoubanscore() {
 		return doubanscore;
 	}
@@ -175,12 +192,27 @@ public class LoadMoviesAction extends ActionSupport{
 	
 	public String LoadMovies()
 	{
+		HttpServletRequest request=ServletActionContext.getRequest();
+		 System.out.println("---------------");  
+	        //当前页  
+	        int intPage = Integer.parseInt((page == null || page == "0") ? "1":page);  
+	        //每页显示条数  
+	        int number = Integer.parseInt((rows == null || rows == "0") ? "10":rows);  
+	        //每页的开始记录  第一页为1  第二页为number +1   
+	        int start = (intPage-1)*number; 
 		//MoviesRecord moviesRecord = new MoviesRecord();
 		//list = moviesRecord.findAll();
 		MoviesDAO moviesDAO = new MoviesDAO();
-		list = moviesDAO.findAll();
+		List templist = moviesDAO.findAll();
+		
+		list=templist.subList(start, start+number);
+		//list = moviesDAO.findByPage(start, number);
+		
 		dataMap.clear();
+		dataMap.put("total", templist.size());//total键 存放总记录数，必须的    
 		dataMap.put("rows", list);
+		request.setAttribute("Search", 0);
+		//resultObj = JSONObject.fromObject(dataMap);//格式化result   一定要是JSONObject  
         return SUCCESS; 
 	}
 	

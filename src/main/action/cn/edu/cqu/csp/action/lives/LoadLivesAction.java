@@ -106,6 +106,7 @@ public class LoadLivesAction extends ActionSupport{
 		}*/
 		dataMap.clear();
 		dataMap.put("rows", list);
+		/*分页*/
         return SUCCESS;   
 	}
 	

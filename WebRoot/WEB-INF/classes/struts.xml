@@ -73,6 +73,7 @@
 			<result type="json">  
 				<param name="root">dataMap</param>
 			</result>
+			
 		</action>
 		
 		<action name="AddCountAction" class="cn.edu.cqu.csp.action.movies.AddCountAction">
@@ -256,6 +257,7 @@
 			<result type="json">  
 				<param name="root">dataMap</param>
 			</result>
+			
 		</action>
 		
         <action name="LoadUserAction"  

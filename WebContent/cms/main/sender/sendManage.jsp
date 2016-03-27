@@ -5,13 +5,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>上报频率管理</title>
+
 </head>
-<body>
-<form action="SenderAction!edit.action" method="post">
-原上报频率： ${value}
+<body class="sender">
+<form action="SenderAction!edit.action" method="post" class="sender_form"  onsubmit="return toVaild()">
 <br>
-更新频率为：<input type="text" name="sendValue" >
-<input type="submit" value="提交">
+<br>
+<br>
+<div class="sender_form">原上报频率： <span class="sender_old">${value}</span></div>
+<br>
+更新频率为：<input  type="number" min="1" id="sendValue" name="sendValue" class="sender_text" 
+ onmouseout="this.style.backgroundColor='#ffffff'"  required style="height: 16px; "><br/>
+<br>
+<input type="submit" value="提  交" class="sender_submit" >
 </form>
+
+
 </body>
 </html>
