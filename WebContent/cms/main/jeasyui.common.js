@@ -41,6 +41,7 @@ if(!$('#tabs_'+classId).tabs('exists',subtitle)){
 * 更新后往往会有JS错误	
 */
 function updateTab(classId,url,subtitle){
+	
 $('#tabs_'+classId).tabs('select',subtitle);
 var tab = $('#tabs_'+classId).tabs('getSelected');
 tab.panel('refresh', url);

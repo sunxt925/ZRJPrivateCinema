@@ -7,7 +7,9 @@ function(){
 $('.sider li a').click(function(){
 var classId = 'index';
 var subtitle = $(this).text();
+
 var url = $(this).attr('cmshref');
+//alert(url);
 var rel = $(this).attr('rel');
 //左侧直接打开弹窗sss
 if(rel=='dialog'){
@@ -42,6 +44,7 @@ if(!$('#tabs_'+classId).tabs('exists',subtitle)){
 * 更新后往往会有JS错误	
 */
 function updateTab(classId,url,subtitle){
+	
 $('#tabs_'+classId).tabs('select',subtitle);
 var tab = $('#tabs_'+classId).tabs('getSelected');
 tab.panel('refresh', url);

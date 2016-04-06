@@ -74,14 +74,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div data-options="region:'west',split:true,title:'导航菜单'" style="width:200px;">
         <div class="easyui-accordion sider" data-options="fit:true,border:false">
             <!--//左侧菜单导航-->
-        	
-    		
-    
-           
             <div title="电影信息管理" data-options="iconCls:'icon-mini-add'" style="padding:10px;">
         		<ul class="easyui-tree" data-options="animate:true" >
         			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/movies/moviesManage.html" type="nav_head" rel="">电影管理</a></li>
-        			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/trailers/trailersManage.html" type="nav_head" rel="">预告片管理</a></li>
+        			<li><a style="color:#fff;" href="javascript:viod(1);" cmshref="cms/main/trailers/trailersManage.html" type="nav_head" rel="">预告片管理</a></li>
         			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/lives/livesManage.html" type="nav_head" rel="">live管理</a></li>
         			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/tags/tagsManage.html" type="nav_head" rel="">标签管理</a></li>
         			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/messages/messagesManage.html" type="nav_head" rel="">提示信息管理</a></li>
