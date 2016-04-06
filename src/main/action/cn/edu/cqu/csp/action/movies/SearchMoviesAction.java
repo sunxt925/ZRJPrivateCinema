@@ -80,12 +80,12 @@ public class SearchMoviesAction extends ActionSupport{
 		
 		 System.out.println("========");  
 		
-	        //当前页  
+	       /* //当前页  
 	        int intPage = Integer.parseInt((page == null || page == "0") ? "1":page);  
 	        //每页显示条数  
 	        int number = Integer.parseInt((rows == null || rows == "0") ? "10":rows);  
 	        //每页的开始记录  第一页为1  第二页为number +1   
-	        int start = (intPage-1)*number; 
+	        int start = (intPage-1)*number; */
 		MoviesDAO moviesDAO = new MoviesDAO();
 		try {
 			keyword = URLDecoder.decode(keyword, "UTF-8");
@@ -94,8 +94,15 @@ public class SearchMoviesAction extends ActionSupport{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		//System.out.println(keyword);
+		list = (List) moviesDAO.findByKeyword(keyword);
+		dataMap.clear();
+		dataMap.put("rows", list);
+		dataMap.put("success", 1);
+		/*//System.out.println(keyword);
 		List templist = (List) moviesDAO.findByKeyword(keyword);
+		
 		System.out.println("templist.size()======"+templist.size());  
 		list=templist.subList(start, start+number);
 		dataMap.clear();
@@ -103,7 +110,7 @@ public class SearchMoviesAction extends ActionSupport{
 		//dataMap.put("total", templist.size());//total键 存放总记录数，必须的    
 		
 
-		dataMap.put("success", 1);
+		dataMap.put("success", 1);*/
 		return "success";
 	}
 	

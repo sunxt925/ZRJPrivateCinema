@@ -11,10 +11,12 @@
     <script>
 	
         $(function(){
+        	 alert(classId);
             var classId = 'tagsManage';
             var hrefadd = 'cms/main/tags/tagsadd.html';
             var hrefedit = 'cms/main/tags/tagsedit.html';
             var height = $('.indexcenter').height();
+           
             $('#datagrid_'+classId).datagrid({
     			url:'LoadTagsAction!LoadTags.action',
     			fitColumns:true,
@@ -24,6 +26,7 @@
     			showFooter:true,
     			height:height-50,
     			animate:true,
+    			pagination:false,//分页控件
     			columns:[[	
     				{field:'checkbox',checkbox:true},
         			{field:'id',title:"标签ID",width:100},
