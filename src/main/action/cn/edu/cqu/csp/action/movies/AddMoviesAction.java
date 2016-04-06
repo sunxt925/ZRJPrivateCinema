@@ -240,8 +240,13 @@ public class AddMoviesAction extends ActionSupport{
 		try {
 			System.out.println("name:"+movies_moviename);
 			String doubanid=GetIDByName.getID(movies_moviename);
-			MovieInfo info=new MovieInfo();
-			info.getMovieInfoAuto(movies_moviename, doubanid);
+			String[] ids=doubanid.split(";");
+			for(String i:ids){
+				MovieInfo info=new MovieInfo();
+				info.getMovieInfoAuto(movies_moviename, i);
+			}
+//			MovieInfo info=new MovieInfo();
+//			info.getMovieInfoAuto(movies_moviename, doubanid);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

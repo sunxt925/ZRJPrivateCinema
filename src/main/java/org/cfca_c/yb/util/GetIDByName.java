@@ -28,7 +28,7 @@ public class GetIDByName {
 		String money="";
 		String url="https://movie.douban.com/subject_search?search_text="+name+"&cat=1002";
 		System.out.println("url:"+url);
-		String movieId=getIDByURL(url,name);
+		String movieId=getIDsByURL(url,name);
 		//String loginurl="http://ids.cqu.edu.cn/amserver/UI/Login?goto=http://i.cqu.edu.cn/welcome/getUserInfo.do&goto=http://i.cqu.edu.cn&IDToken1="+username+"&IDToken2="+password;
 		//System.out.println("loginurl:::::::::"+loginurl);
 	
@@ -63,6 +63,27 @@ public class GetIDByName {
 		*/
 		return movieId;
 	}
+	private static String getIDsByURL(String url,String name) throws IOException {  
+        String id="";
+        try {  
+            org.jsoup.nodes.Document doc = Jsoup.connect(url).header("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2").get();  
+            Elements links = doc.select("p[class=pl]");   
+            Element link=links.first();
+            String text=link.text();
+            System.out.println("��飺"+text);
+            Elements idlinks = doc.select("div[class=pl2]>a");
+            for(Element lk:idlinks){
+            	if(lk.text().split("/")[0].startsWith(name)){
+            		id=id+getIDFromElement(lk)+";";            		
+            	}
+            }
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        }
+        System.out.println("ids:"+id);
+        return id;  
+    }
+	
 	private static String getIDByURL(String url,String name) throws IOException {  
         String id="";
         try {  
@@ -77,14 +98,6 @@ public class GetIDByName {
             		return getIDFromElement(lk);            		
             	}
             }
-            
-           /* Element linkid=idlinks.first();
-            String allnames=linkid.text();
-            System.out.println("�������ƣ�"+allnames);
-            String text2=linkid.attr("href");
-            int index=text2.substring(0, text2.length()-1).lastIndexOf("/");
-            id=text2.substring(index+1,text2.length()-1);
-            System.out.println("id��"+id);*/
 
         } catch (IOException e) {  
             e.printStackTrace();  
