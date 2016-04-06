@@ -204,8 +204,13 @@ public class LoadMoviesAction extends ActionSupport{
 		//list = moviesRecord.findAll();
 		MoviesDAO moviesDAO = new MoviesDAO();
 		List templist = moviesDAO.findAll();
+		int total = templist.size();
+		if((total/number+1)==Integer.parseInt(page)){
+			list=templist.subList(start, start+(total%number)-1);
+		}else {
+			list=templist.subList(start, start+number);
+		}
 		
-		list=templist.subList(start, start+number);
 		//list = moviesDAO.findByPage(start, number);
 		
 		dataMap.clear();
