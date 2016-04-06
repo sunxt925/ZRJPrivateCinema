@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<base href="<%=basePath%>">
 	<meta charset="UTF-8">
 	<title>自然卷私人影院后台管理</title>
-	<link id="easyuiTheme" rel="stylesheet" href="cms/themes/sunny/easyui.css" type="text/css"></link>
+	<link id="easyuiTheme" rel="stylesheet" href="cms/themes/dark-hive/easyui.css" type="text/css"></link>
 	<link rel="stylesheet" type="text/css" href="cms/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="cms/main/portal.css">
     <link rel="stylesheet" type="text/css" href="cms/main/common.css">
@@ -32,16 +32,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 </noscript>
 
-	<div data-options="region:'north',border:false" style="height:60px;background:#fff;padding:0px">
-    	<div class="site_title" >自然卷私人影院后台管理系统</div>
-        <div id="sessionInfoDiv" style="position: absolute;right: 5px;top:10px;">
+	<div class="cms_title" data-options="region:'north',border:false" style="height:100px;" >
+    	<!--自然卷私人影院后台管理系统</div> -->
+    	 <div class="site_title" >
+    	 <img src="images/cms_bg.png" height="100"/>
+    	 </div>
+        <div id="sessionInfoDiv" style="position: absolute;right: 5px;top:10px;color:#fff;">
         	<%
         		String username = (String)request.getAttribute("username");
         		out.println("[<strong>"+username+"</strong>]，欢迎你！");
         	 %>            
         </div>
         <div style="position: absolute; right: 0px; bottom: 0px; ">
-            <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_pfMenu',iconCls:'icon-ok'">更换皮肤</a> 
+            <a href="javascript:void(0);" class="easyui-menubutton" style="color:#fff;" data-options="menu:'#layout_north_pfMenu',iconCls:'icon-ok'">更换皮肤</a> 
            
         </div>
         
@@ -76,30 +79,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
            
             <div title="电影信息管理" data-options="iconCls:'icon-mini-add'" style="padding:10px;">
-        		<ul class="easyui-tree" data-options="animate:true">
-        			<li><a href="javascript:viod(0);" cmshref="cms/main/movies/moviesManage.html" type="nav_head" rel="">电影管理</a></li>
-        			<li><a href="javascript:viod(0);" cmshref="cms/main/trailers/trailersManage.html" type="nav_head" rel="">预告片管理</a></li>
-        			<li><a href="javascript:viod(0);" cmshref="cms/main/lives/livesManage.html" type="nav_head" rel="">live管理</a></li>
-        			<li><a href="javascript:viod(0);" cmshref="cms/main/tags/tagsManage.html" type="nav_head" rel="">标签管理</a></li>
-        			<li><a href="javascript:viod(0);" cmshref="cms/main/messages/messagesManage.html" type="nav_head" rel="">提示信息管理</a></li>
-        			<li><a href="javascript:viod(0);" cmshref="SenderAction!show.action" type="nav_head" rel="">上报频率管理</a></li>
+        		<ul class="easyui-tree" data-options="animate:true" >
+        			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/movies/moviesManage.html" type="nav_head" rel="">电影管理</a></li>
+        			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/trailers/trailersManage.html" type="nav_head" rel="">预告片管理</a></li>
+        			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/lives/livesManage.html" type="nav_head" rel="">live管理</a></li>
+        			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/tags/tagsManage.html" type="nav_head" rel="">标签管理</a></li>
+        			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/messages/messagesManage.html" type="nav_head" rel="">提示信息管理</a></li>
+        			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="SenderAction!show.action" type="nav_head" rel="">上报频率管理</a></li>
             	</ul>
             </div><!--//左侧菜单导航-->
             <div title="站点管理" data-options="iconCls:'icon-mini-add'" style="padding:10px;">
         		<ul class="easyui-tree" data-options="animate:true">
-        			<li><a href="javascript:viod(0);" cmshref="cms/main/sites/sitesManage.html" type="nav_head" rel="">站点管理</a></li>
+        			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/sites/sitesManage.html" type="nav_head" rel="">站点管理</a></li>
             	</ul>
             </div><!--//左侧菜单导航-->
              <div title="用户管理" data-options="iconCls:'icon-mini-add'" style="padding:10px;">
         		<ul class="easyui-tree" data-options="animate:true">
-        			<li><a href="javascript:viod(0);" cmshref="cms/main/users/userManage.html" type="nav_head" rel="">用户管理</a></li>
+        			<li><a style="color:#fff;" href="javascript:viod(0);" cmshref="cms/main/users/userManage.html" type="nav_head" rel="">用户管理</a></li>
             	</ul>
             </div><!--//左侧菜单导航-->
         </div><!--accordion-->
     </div><!--west-->
     
 	<div data-options="region:'south',border:false" style="height:50px;background:#fff;padding:10px;">
-        <div id="footer">
+        <div id="footer" style="color:#000;">
             Copyright &copy; 2015 by 自然卷私人影院.<br>
             All Rights Reserved<br>
         </div>
