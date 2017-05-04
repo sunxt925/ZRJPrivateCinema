@@ -21,6 +21,10 @@ public class Sender {
 		String onlyCode="";
 		String movieSerial=getTimeText().split(" ")[0].replace("-", "").substring(2);//再加上当日播放号
 		MessagesDAO mdao=new MessagesDAO();
+		userCode=mdao.getUserCode();
+		System.out.println("usercode:"+userCode);
+		password=mdao.getPassword();
+		onlyCode=mdao.getOnlyCode();
 		movieSerial=mdao.getPlaySerial(movieSerial);
 		String xml="<?xml version='1.0' encoding='utf-8' ?><MoviePlayDetail><UserInfo><UserName name='用户代码'>";
 		xml+=userCode;

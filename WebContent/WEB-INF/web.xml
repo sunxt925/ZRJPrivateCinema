@@ -8,6 +8,12 @@
   <welcome-file-list>
     <welcome-file>login1.html</welcome-file>
   </welcome-file-list>
+ <!--  <listener>
+		<listener-class>
+			cn.sxt.base.listener.RunningListener
+		</listener-class>
+	</listener> -->
+  
   <filter>
   	<filter-name>struts2</filter-name>
   	<filter-class>

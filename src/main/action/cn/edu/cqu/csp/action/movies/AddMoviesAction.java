@@ -239,7 +239,7 @@ public class AddMoviesAction extends ActionSupport{
 		//Movies movies = new Movies();
 		try {
 			System.out.println("name:"+movies_moviename);
-			String doubanid=GetIDByName.getID(movies_moviename);
+			String doubanid=GetIDByName.getIDs(movies_moviename);
 			String[] ids=doubanid.split(";");
 			for(String i:ids){
 				MovieInfo info=new MovieInfo();

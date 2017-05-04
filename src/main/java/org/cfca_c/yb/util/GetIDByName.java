@@ -23,12 +23,50 @@ public class GetIDByName {
 		String name="��ҹ��";
 		System.out.println(name+"��ID: "+getID(name));
 	}
-	
-	public static String getID(String name) throws IOException{
+	public static String getIDs(String name) throws IOException{
 		String money="";
 		String url="https://movie.douban.com/subject_search?search_text="+name+"&cat=1002";
 		System.out.println("url:"+url);
 		String movieId=getIDsByURL(url,name);
+		//String loginurl="http://ids.cqu.edu.cn/amserver/UI/Login?goto=http://i.cqu.edu.cn/welcome/getUserInfo.do&goto=http://i.cqu.edu.cn&IDToken1="+username+"&IDToken2="+password;
+		//System.out.println("loginurl:::::::::"+loginurl);
+	
+		/*
+		Random rand = new Random();
+		String filename="c:/"+rand.nextInt()+".html";
+		URL aurl = new URL(loginurl);
+		BufferedReader br = new BufferedReader(new InputStreamReader(aurl.openStream()));
+		FileWriter fw = new FileWriter(filename);
+		String line = "";
+		while (true)
+		{
+			line = br.readLine();
+			if(line==null)break;
+			fw.write(line);
+		}
+		fw.flush();
+		fw.close();
+		
+		File html=new File(filename);
+        try {  
+            org.jsoup.nodes.Document doc = Jsoup.parse(html, "utf-8");  
+//            Elements links = doc.select("td[class=gradule-args]");   
+//            System.out.println("size::::"+links.size());
+//            money=links.get(0).text();
+
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        } finally{
+        	//html.delete();
+        }
+		*/
+		return movieId;
+	}
+	public static String getID(String name) throws IOException{
+		String money="";
+		String url="https://movie.douban.com/subject_search?search_text="+name+"&cat=1002";
+		System.out.println("url:"+url);
+		String movieId=getIDByURL(url,name);
 		//String loginurl="http://ids.cqu.edu.cn/amserver/UI/Login?goto=http://i.cqu.edu.cn/welcome/getUserInfo.do&goto=http://i.cqu.edu.cn&IDToken1="+username+"&IDToken2="+password;
 		//System.out.println("loginurl:::::::::"+loginurl);
 	
@@ -91,11 +129,16 @@ public class GetIDByName {
             Elements links = doc.select("p[class=pl]");   
             Element link=links.first();
             String text=link.text();
-            System.out.println("��飺"+text);
-            Elements idlinks = doc.select("div[class=pl2]>a");
+            System.out.println("text:"+text);
+            Elements idlinks = doc.select("div[class=pl2]");
             for(Element lk:idlinks){
-            	if(lk.text().split("/")[0].startsWith(name)){
-            		return getIDFromElement(lk);            		
+            	//4.30 更新 筛选出非动画 评分最高的第一个
+            	Element lka=lk.select("a").first();
+            	if(lk.text().contains("动画"))	
+            		continue;
+            	//System.out.println(lk.text()+"||text:"+lka.text());
+            	if(lka.text().split("/")[0].startsWith(name)){
+            		return getIDFromElement(lka);            		
             	}
             }
 

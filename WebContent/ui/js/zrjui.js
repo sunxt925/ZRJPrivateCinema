@@ -427,8 +427,8 @@ if(event.keyCode ==13)
 
 function click_a(ad,aflag,address)
 {
-	window.open(ad,"_top");
-	
+	//window.open(ad,"_top");
+	window.open(address,"_top");
 	$.ajax({
 		url:'AddCountAction!AddCount.action',
 		data:

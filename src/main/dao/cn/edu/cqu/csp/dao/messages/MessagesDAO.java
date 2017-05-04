@@ -208,6 +208,8 @@ public class MessagesDAO extends BaseHibernateDAO  {
             throw re;
         }
     }
+    
+    //Made by SunXT 以下
 
 	public void updateSender(int sendValue) {
 		 try {
@@ -259,6 +261,66 @@ public class MessagesDAO extends BaseHibernateDAO  {
             	String sql2 = "UPDATE CONFS SET ipaddress='"+today+"0001' where id=3";               
 	            session.createSQLQuery(sql2).executeUpdate();  
 	            result=today+"0001";
+            }
+            tx.commit();
+            session.close();
+            return result;
+        } catch (RuntimeException re) {
+            throw re;
+        }	
+	}
+
+	public String getUserCode() {
+		String result="";
+		try {
+        	session = getSession();
+        	tx = session.beginTransaction();
+        	String sql = "SELECT ipaddress from CONFS where id=4";               
+            String rs=(String)session.createSQLQuery(sql).list().get(0); 
+            if(rs!=null){  //还是当日影片 后四位序号加一
+            	result=rs;
+            }else{// 没有当日影片数据，这个为第一次播放，后四位置为0001
+            	System.out.println("用户代码读取有误！");
+            }
+            tx.commit();
+            session.close();
+            return result;
+        } catch (RuntimeException re) {
+            throw re;
+        }	
+	}
+
+	public String getPassword() {
+		String result="";
+		try {
+        	session = getSession();
+        	tx = session.beginTransaction();
+        	String sql = "SELECT ipaddress from CONFS where id=5";               
+            String rs=(String)session.createSQLQuery(sql).list().get(0); 
+            if(rs!=null){  //还是当日影片 后四位序号加一
+            	result=rs;
+            }else{// 没有当日影片数据，这个为第一次播放，后四位置为0001
+            	System.out.println("用户密码读取有误！");
+            }
+            tx.commit();
+            session.close();
+            return result;
+        } catch (RuntimeException re) {
+            throw re;
+        }	
+	}
+
+	public String getOnlyCode() {
+		String result="";
+		try {
+        	session = getSession();
+        	tx = session.beginTransaction();
+        	String sql = "SELECT ipaddress from CONFS where id=6";               
+            String rs=(String)session.createSQLQuery(sql).list().get(0); 
+            if(rs!=null){  //还是当日影片 后四位序号加一
+            	result=rs;
+            }else{// 没有当日影片数据，这个为第一次播放，后四位置为0001
+            	System.out.println("唯一认证码读取有误！");
             }
             tx.commit();
             session.close();

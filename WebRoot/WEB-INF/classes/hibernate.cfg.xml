@@ -13,10 +13,10 @@
 	<property name="hibernate.show_sql">true</property>
 	<property name="javax.persistence.validation.mode">none</property>
 	<property name="connection.url">
-		jdbc:mysql://172.20.60.88:3306/cqzrj
+		jdbc:mysql://10.10.102.6:3306/cqzrj
 	</property>
 	<property name="connection.username">root</property>
-	<property name="connection.password">20105467</property>
+	<property name="connection.password">root</property>
 	<property name="connection.driver_class">
 		com.mysql.jdbc.Driver
 	</property>

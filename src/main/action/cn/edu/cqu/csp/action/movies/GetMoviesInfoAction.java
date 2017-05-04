@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import org.cfca_c.yb.util.GetIDByName;
+
 import cn.edu.cqu.csp.dao.movies.Movies;
 import cn.edu.cqu.csp.dao.movies.MoviesDAO;
 import cn.edu.cqu.csp.src.MovieInfo;
@@ -48,21 +50,41 @@ public class GetMoviesInfoAction extends ActionSupport{
 		MoviesDAO moviesDAO = new MoviesDAO();
 		Movies movies = new Movies();
 		MovieInfo mi = new MovieInfo();
+		
 		StringTokenizer st = new StringTokenizer(idArray);
 		String error = "";
 		while (st.hasMoreTokens()) {
-			if(!mi.getMovies(st.nextToken()))
+			//made By Sunxt
+		/*	if(!mi.getMoviesEO(st.nextToken()))
+			{
+				error="error get movies";
+				continue;
+			}
+			if(!mi.getMovieEOInfo())
+			{
+				error="error getMovieInfo";
+				continue;
+			}*/
+			String id=st.nextToken();
+			if(!mi.getDoubanId(id))
+			{
+				error="error get doubanID";
+				continue;
+			}
+			System.out.println("id got");
+			//end sxt
+			if(!mi.getMovies(id))
 			{
 				error="error get movies";
 				continue;
 			}
 				
 			//mi.getMovies(st.nextToken());
-		/*	if(!mi.downloadPoster())
+			if(!mi.downloadPoster())
 			{
 				error="error downloadposter";
 				continue;
-			}*/
+			}
 				
 			
 			if(!mi.getMovieInfo())

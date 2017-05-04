@@ -17,6 +17,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.cfca_c.yb.util.GetIDByName;
 
 import cn.edu.cqu.csp.dao.movies.Movies;
 import cn.edu.cqu.csp.dao.movies.MoviesDAO;
@@ -74,13 +75,48 @@ public class MovieInfo {
     	trailers = new Trailers();
     	
     }
+    /*
+     * 获取豆瓣id By name, sxt
+     */
+    public boolean getDoubanId(String movieid)
+    {
+    	movies = moviesDAO.findById(Integer.parseInt(movieid));
+    	if(movies.getDoubanid()==null||movies.getDoubanid()==0){
+    		try
+    		{
+    			doubanid = GetIDByName.getID(movies.getMoviename());
+    			System.out.println("获取豆瓣ID："+doubanid);
+    		}
+    		catch(Exception e)
+    		{
+    			return false;
+    		}
+
+    		if(doubanid == null||doubanid.length()==0)
+    		{
+    			return false;
+    		}
+    		else
+    		{
+    			System.out.println("获取豆瓣ID成功："+doubanid);
+    			return true;
+    		}
+    	}else{
+    		doubanid = movies.getDoubanid().toString();
+    	}
+		return true;
+    	
+    }
     
     public boolean getMovies(String movieid)
     {
+    	//System.out.println("getting movies1");
     	movies = moviesDAO.findById(Integer.parseInt(movieid));
+    	//System.out.println("getting movies2");
     	try
     	{
-    		doubanid = movies.getDoubanid().toString();
+    		//System.out.println("getting movies3");
+    		//doubanid = movies.getDoubanid().toString();
     	}
     	catch(Exception e)
     	{
@@ -413,6 +449,46 @@ public class MovieInfo {
         	return tempStr;
 		
 	}
+	/*
+	 * 只增加英文名和别名： sxt
+	 */
+	public boolean getMovieEOInfo()
+	{
+		System.out.println("getInfo");
+			System.out.println(matchInfo(ENGLISHNAME));
+		movies.setOthername(matchInfo(OTHERNAME));
+		movies.setEnglishname(matchInfo(ENGLISHNAME));
+		moviesDAO.update(movies);
+		return true;
+	}
+	public boolean getMoviesEO(String movieid)
+    {
+    	//System.out.println("getting movies1");
+    	movies = moviesDAO.findById(Integer.parseInt(movieid));
+    	//System.out.println("getting movies2");
+    	try
+    	{
+    		//System.out.println("getting movies3");
+    		doubanid = movies.getDoubanid().toString();
+    	}
+    	catch(Exception e)
+    	{
+    		return false;
+    	}
+    	
+    	//System.out.println("hghgh");
+    	moviename = movies.getMoviename();
+    	if(doubanid == null||doubanid.length()==0)
+    	{
+    		return false;
+    	}
+    	else
+    	{
+    		
+        	return getMovieHtml();
+    	}
+    	
+    }
 	
 	public boolean getMovieInfo()
 	{
@@ -433,9 +509,16 @@ public class MovieInfo {
 			return false;
 		}
 		
+		movies.setDoubanid(Integer.parseInt(doubanid));
 		movies.setDuration(matchInfo(DURATION));
-		movies.setDoubanscore(matchInfo(DOUBANSCORE));
-		movies.setMovietag(matchInfo(TAG));
+		String dbscore=matchInfo(DOUBANSCORE);
+		movies.setDoubanscore(dbscore);
+		if(dbscore.startsWith("8")||dbscore.startsWith("9"))
+			movies.setMovietag(matchInfo(TAG)+"豆瓣高分");
+		else {
+			movies.setMovietag(matchInfo(TAG));
+		}	
+		//movies.setMovietag(matchInfo(TAG));
 		System.out.println(matchInfo(ENGLISHNAME));
 		movies.setOthername(matchInfo(OTHERNAME));
 		movies.setEnglishname(matchInfo(ENGLISHNAME));
